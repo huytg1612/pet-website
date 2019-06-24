@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 2, 2019, 11:06:22 AM
+    Author     : SE130226
+*/
+@font-face{
+    font-family: "Channel_Slanted";
+    src: url("fonts/Channel_Slanted1.ttf");
+}
+@font-face{
+    font-family: "Lovelo-Black";
+    src: url("fonts/Lovelo-Black.otf");
+}
+@font-face{
+    font-family: "LinearIcon";
+    src: url("fonts/Linearicons-Free.ttf");
+}
