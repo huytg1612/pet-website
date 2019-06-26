@@ -7,7 +7,7 @@ function onChangeQuantity(id, quantity) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            $('#shopping-cart').load('viewCart.jsp #myTable');
+            $('#shopping-cart').load('accessory/viewCart.jsp #myTable');
 
             showSnackBar(this.responseText);
         }
@@ -21,7 +21,7 @@ function removeItem(id, index) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            $('#shopping-cart').load('viewCart.jsp #myTable');
+            $('#shopping-cart').load('accessory/viewCart.jsp #myTable');
             
             showSnackBar(this.responseText);
         }
@@ -36,7 +36,7 @@ function checkOut() {
 
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            $('#shopping-cart').load('viewCart.jsp #myTable');
+            $('#shopping-cart').load('accessory/viewCart.jsp #myTable');
 
             var responseMSG = this.responseText;
             var myModal = document.getElementById("myModal");

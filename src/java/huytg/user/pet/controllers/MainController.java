@@ -24,6 +24,7 @@ public class MainController extends HttpServlet {
     private static final String EDIT = "PetEditController";
     private static final String LOAD = "PetLoadController";
     private static final String ERROR = "error.jsp";
+    private static final String INSERT_PAGE = "user_petmanage/petInsert.jsp";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,6 +55,8 @@ public class MainController extends HttpServlet {
                 url = SEARCH;
             } else if(action.equals("Load")){
                 url = LOAD;
+            } else if(action.equals("Forward")){
+                url = INSERT_PAGE;
             }
             else{
                 request.setAttribute("ERROR", "This action is not supported");

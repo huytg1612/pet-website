@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,8 +32,8 @@ public class LogoutController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            request.getSession().removeAttribute("USER");
-            request.getSession().invalidate();
+            HttpSession session = request.getSession();
+            session.invalidate();
         } catch (Exception e) {
             log("Error at Logout Controller: "+e.getMessage());
         } finally{

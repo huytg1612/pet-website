@@ -100,6 +100,10 @@ public class PetDTO implements Serializable{
     public void setImage(String image) {
         this.image = image;
     }
-    
+
+    @Override
+    public String toString() {
+        return "PetDTO{" + "id=" + id + ", name=" + name + ", dob=" + dob + ", sex=" + sex + ", descrip=" + descrip + ", status=" + status + ", type=" + type + ", image=" + image + ", username=" + username + '}';
+    }
     
 }

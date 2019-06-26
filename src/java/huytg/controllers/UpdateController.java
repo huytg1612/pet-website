@@ -7,6 +7,7 @@ package huytg.controllers;
 
 import huytg.dtos.RegistrationDTO;
 import huytg.dtos.RegistrationDetailDTO;
+import huytg.dtos.RegistrationErrorObject;
 import huytg.models.RegistrationDAO;
 import huytg.models.RegistrationDetailDAO;
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class UpdateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
 
+        boolean check = true;
         try {
             String username = request.getParameter("txtUsername");
             String fName = request.getParameter("txtFirstName");
@@ -48,17 +50,33 @@ public class UpdateController extends HttpServlet {
             String dob = request.getParameter("txtDOB");
             String about = request.getParameter("txtAbout");
             String phone = request.getParameter("txtPhone");
-            
+
             RegistrationDetailDTO dto = new RegistrationDetailDTO(username, fName, lName, address, sex, dob, about, phone);
             RegistrationDetailDAO dao = new RegistrationDetailDAO();
 
-            if (dao.update(dto)) {
-                request.setAttribute("DTO_Regis", dto);
-                request.setAttribute("NOTICE", "Update successful");
-                request.setAttribute("USERNAME", username);
+            RegistrationErrorObject errorObj = new RegistrationErrorObject();
+
+            if (fName.isEmpty()) {
+                errorObj.setfName("First name can't be blank");
+                check = false;
+            }
+            if (lName.isEmpty()) {
+                errorObj.setlName("Last name can't be blank");
+                check = false;
+            }
+
+            if (check) {
+                if (dao.update(dto)) {
+                    request.setAttribute("DTO_ReDe", dto);
+                    request.setAttribute("NOTICE", "Update successful");
+                    request.setAttribute("USERNAME", username);
+                    url = SUCCESS;
+                } else {
+                    request.setAttribute("ERROR", "Update failed");
+                }
+            }else{
+                request.setAttribute("INVALID", errorObj);
                 url = SUCCESS;
-            } else {
-                request.setAttribute("ERROR", "Update failed");
             }
 
         } catch (Exception e) {

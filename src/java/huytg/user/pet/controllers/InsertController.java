@@ -22,7 +22,10 @@ import javax.servlet.http.HttpSession;
  * @author SE130226
  */
 public class InsertController extends HttpServlet {
-    
+
+    private static final String FAILED = "user_petmanage/petInsert.jsp";
+    private static final String SUCCESS = "PetLoadController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,64 +38,75 @@ public class InsertController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "petInsert.jsp";
-        
+        String url = FAILED;
+
         boolean isValid = true;
         try {
             String name = request.getParameter("txtPetName");
             String dob = request.getParameter("txtPetDOB");
             String sex = request.getParameter("cboPetSex");
             String type = request.getParameter("cboPetType");
-            String image = "/images/Pets/"+request.getParameter("filePetImage");
+            String image = "/images/Pets/" + request.getParameter("filePetImage");
             String descrip = request.getParameter("txtPetDescription");
-                    
+            
+            System.out.println("Type: "+type);
+            
             PetError petError = new PetError();
             
-            if(name.isEmpty()){
+            if (name.isEmpty()) {
                 petError.setNameError("Name can't be blank");
                 isValid = false;
             }
-            if(!sex.equals("Male") && ! sex.equals("Female")){
+            if (!sex.equals("Male") && !sex.equals("Female")) {
                 petError.setSexError("Sex is not valid. Just Male or Female");
                 isValid = false;
             }
-            if(!type.equals("Dog") && type.equals("Cat") && !type.equals("Fish") && !type.equals("Hamster") && !type.equals("Bird")){
+            if (!type.equals("Dog") && !type.equals("Cat") && !type.equals("Fish") && !type.equals("Hamster") && !type.equals("Bird")) {
                 petError.setTypeError("Type is not valid");
                 isValid = false;
             }
             
-            if(isValid){
+            System.out.println(isValid);
+            
+            if (isValid) {
                 PetDAO dao = new PetDAO();
-                
+
                 int typeID = 0;
-                
-                switch(type){
-                    case "Dog": typeID = 1;
-                    break;
-                    case "Cat": typeID = 2;
-                    break;
-                    case "Fish": typeID = 3;
-                    break;
-                    case "Hamster": typeID = 4;
-                    break;
-                    case "Bird": typeID = 5;
-                    break;
+
+                switch (type) {
+                    case "Dog":
+                        typeID = 1;
+                        break;
+                    case "Cat":
+                        typeID = 2;
+                        break;
+                    case "Fish":
+                        typeID = 3;
+                        break;
+                    case "Hamster":
+                        typeID = 4;
+                        break;
+                    case "Bird":
+                        typeID = 5;
+                        break;
                 }
-                
+
                 HttpSession session = request.getSession();
                 RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO) session.getAttribute("USER");
                 
-                PetDTO dto = new PetDTO(typeID, name, dob, sex, descrip, 0, typeID, dtoReDe.getUsername(), image);
-                if(!dao.insert(dto)){
+                PetDTO dto = new PetDTO(0, name, dob, sex, descrip, 0, typeID, dtoReDe.getUsername(), image);
+                
+                if (!dao.insert(dto)) {
                     request.setAttribute("NOTICE", "Insert failed");
-                }else{
+                } else {
+                    url = SUCCESS;
                     request.setAttribute("NOTICE", "Insert successful");
                 }
-            }else {
+            } else {
                 request.setAttribute("INVALID", petError);
             }
         } catch (Exception e) {
-            log("Error at PetInsertController: "+e.getMessage());
+            log("Error at PetInsertController: " + e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

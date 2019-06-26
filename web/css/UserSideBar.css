@@ -4,17 +4,12 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Jun 24, 2019, 6:56:53 PM
+    Created on : Jun 25, 2019, 1:59:30 PM
     Author     : SE130226
 */
-#pet-container{
-    float : left;
-    width: 100%;
-    height: auto;
+.user-side-bar{
+    width: 20% !important;
+    position: static !important ;
+    padding: 1% !important;
+    float:left;
 }
-.pet-card{
-    width: 30%;
-    float: left;
-    margin: 1.67%;
-}
-

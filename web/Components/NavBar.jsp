@@ -37,9 +37,7 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="MainController?action=Edit&txtUsername=<%= dto.getUsername()%>">Profile</a>
-                <a class="dropdown-item" href="${url_Invoice}">Your invoice</a>
-                <a class="dropdown-item" href="../user/user_petmanage/PetMainController?action=Load">Your pet</a>
+                <a class="dropdown-item" href="MainController?action=Edit">Profile</a>
                 <hr/>
                 <a class="dropdown-item" href="MainController?action=Logout">Log out</a>
             </div>
@@ -48,5 +46,10 @@
         %><a href="login.jsp" class="nav-bar-link">Login</a><%
             }
             %>
+        <a href="CartMainController?action=ViewCart" target="_blank" class="badge" id="myCart" style="position: relative;">
+            <div id="cart-icon">
+                <i class="fa fa-shopping-cart" style="font-size: 25px;color: black;"></i> <span class="badge badge-warning ml-2" id="cart-size" style="position: absolute;left: 40%;height: 13px;width: 13px;padding: 5%;">${sessionScope.CART.size}</span>
+            </div>
+        </a>
     </div>
 </div>

@@ -46,7 +46,7 @@ public class PetDAO implements Serializable {
         String name, dob, descrip, sex,image;
         int id, status, type;
 
-        PetDTO dto = null;
+        PetDTO dto;
 
         try {
             conn = MyConnection.getMyConnection();

@@ -22,7 +22,8 @@ public class MainController extends HttpServlet {
     private static final String LOAD = "AccessoryLoadController";
     private static final String SEARCH = "AccessorySearchController";
     private static final String SEARCH_TYPE = "AccessorySearchTypeController";
-    
+    private static final String VIEW_CART_PAGE = "accessory/viewCart.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,10 +45,11 @@ public class MainController extends HttpServlet {
                 url = LOAD;
             } else if (action.equals("Search")) {
                 url = SEARCH;
-            } else if(action.equals("SearchType")){
-                url =SEARCH_TYPE;
-            }
-            else {
+            } else if (action.equals("SearchType")) {
+                url = SEARCH_TYPE;
+            } else if (action.equals("Forward")) {
+                url = VIEW_CART_PAGE;
+            } else {
                 request.setAttribute("ERROR", "This action is not supported");
             }
         } catch (Exception e) {

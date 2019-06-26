@@ -23,6 +23,7 @@ public class MainController extends HttpServlet {
     private static String UPDATE = "CartUpdateController";
     private static String DELETE = "CartDeleteController";
     private static String ERROR = "error.jsp";
+    private static String VIEW_CART = "CartViewController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,12 +50,14 @@ public class MainController extends HttpServlet {
                 url = UPDATE;
             } else if (action.equals("CheckOut")) {
                 url = CHECKOUT;
+            } else if (action.equals("ViewCart")) {
+                url = VIEW_CART;
             } else {
                 request.setAttribute("ERROR", "This action is not supported");
             }
         } catch (Exception e) {
-            log("Error at CartMainController: "+e.getMessage());
-        } finally{
+            log("Error at CartMainController: " + e.getMessage());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

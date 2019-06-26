@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,16 +38,19 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SUCCESS;
+        String url = ERROR;
 
         try {
-
-            String username = request.getParameter("txtUsername");
-
+            HttpSession session = request.getSession();
+            
+            RegistrationDetailDTO sessionDTO = (RegistrationDetailDTO)session.getAttribute("USER");
+            String username = sessionDTO.getUsername();
+            
             RegistrationDetailDAO dao = new RegistrationDetailDAO();
             RegistrationDetailDTO dtoReDe = dao.searchByPK(username);
 
             request.setAttribute("DTO_ReDe", dtoReDe);
+            url = SUCCESS;
 
         } catch (Exception e) {
             log("Error at SearchController: " + e.getMessage());

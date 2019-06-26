@@ -41,7 +41,7 @@ public class RegistrationDAO implements Serializable {
 
     public String checkLogin(String username, String password) throws Exception {
         String role = "failed";
-        
+
         try {
             conn = MyConnection.getMyConnection();
             String sql = "Select Role From tbl_Registration Where Username = ? AND Password = ?";
@@ -110,5 +110,46 @@ public class RegistrationDAO implements Serializable {
         }
 
         return dto;
+    }
+
+    public String getPassword(String username) throws Exception {
+        String password = null;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select Password From tbl_Registration Where Username = ?";
+            
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, username);
+            
+            rs = preStm.executeQuery();
+            if (rs.next()) {
+                password = rs.getString("Password");
+            }
+
+        } finally {
+            closeConnection();
+        }
+
+        return password;
+    }
+    
+    public boolean changePassword(String username,String password) throws Exception{
+        boolean check = false;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Update tbl_Registration Set Password = ? Where Username = ?";
+            preStm = conn.prepareStatement(sql);
+            
+            preStm.setString(1, password);
+            preStm.setString(2, username);
+            
+            check = preStm.executeUpdate() > 0;
+        } finally {
+            closeConnection();
+        }
+        
+        return check;
     }
 }

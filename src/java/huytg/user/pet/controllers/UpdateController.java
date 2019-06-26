@@ -44,7 +44,7 @@ public class UpdateController extends HttpServlet {
             String dob = request.getParameter("txtPetDOB");
             String sex = request.getParameter("cboPetSex");
             String type = request.getParameter("cboPetType");
-            String image = "/images/Pets/" + request.getParameter("filePetImage");
+            String image = request.getParameter("filePetImage");
             String descrip = request.getParameter("txtPetDescription");
             
             System.out.println("Type: "+type);
@@ -90,6 +90,12 @@ public class UpdateController extends HttpServlet {
                 HttpSession session = request.getSession();
                 RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO) session.getAttribute("USER");
 
+                if(image.isEmpty()){
+                    image = dao.findByPK(id).getImage();
+                }else{
+                    image = "/images/Pets/"+image;
+                }
+                
                 PetDTO dto = new PetDTO(id, name, dob, sex, descrip, 0, typeID, dtoReDe.getUsername(), image);
                 if (!dao.update(dto)) {
                     request.setAttribute("NOTICE", "Update failed");

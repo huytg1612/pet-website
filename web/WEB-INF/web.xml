@@ -132,6 +132,18 @@
         <servlet-name>PetUpdateController</servlet-name>
         <servlet-class>huytg.user.pet.controllers.UpdateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartViewController</servlet-name>
+        <servlet-class>huytg.cart.controller.ViewController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForwardController</servlet-name>
+        <servlet-class>huytg.controllers.ForwardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-class>huytg.controllers.ChangePasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -242,27 +254,39 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetMainController</servlet-name>
-        <url-pattern>/user/user_petmanage/PetMainController</url-pattern>
+        <url-pattern>/PetMainController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetInsertController</servlet-name>
-        <url-pattern>/user/user_petmanage/PetInsertController</url-pattern>
+        <url-pattern>/PetInsertController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetLoadController</servlet-name>
-        <url-pattern>/user/user_petmanage/PetLoadController</url-pattern>
+        <url-pattern>/PetLoadController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetDeleteController</servlet-name>
-        <url-pattern>/user/user_petmanage/PetDeleteController</url-pattern>
+        <url-pattern>/PetDeleteController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetEditController</servlet-name>
-        <url-pattern>/user/user_petmanage/PetEditController</url-pattern>
+        <url-pattern>/PetEditController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetUpdateController</servlet-name>
-        <url-pattern>/user/user_petmanage/PetUpdateController</url-pattern>
+        <url-pattern>/PetUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartViewController</servlet-name>
+        <url-pattern>/CartViewController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForwardController</servlet-name>
+        <url-pattern>/ForwardController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <url-pattern>/ChangePasswordController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -14,6 +14,7 @@ public class RegistrationErrorObject {
     private String login;
     private String fName,lName,confirm;
     private String registration;
+    private String oldPassword;
 
     public String getUsername() {
         return username;
@@ -69,6 +70,14 @@ public class RegistrationErrorObject {
 
     public void setRegistration(String registration) {
         this.registration = registration;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
     }
     
     

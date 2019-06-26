@@ -27,6 +27,8 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "LogoutController";
     private static final String INVOICE = "InvoiceController";
     private static final String INVOICE_DETAIL = "InvoiceDetailController";
+    private static final String INSERT_PAGE = "user_petmanage/petInsert.jsp";
+    private static final String CHANGE_PASSWORD = "ChangePasswordController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,11 +57,14 @@ public class MainController extends HttpServlet {
                 url = LOGOUT;
             } else if (action.equals("Update")) {
                 url = UPDATE;
-            } else if(action.equals("InvoiceDetail")){
+            } else if (action.equals("InvoiceDetail")) {
                 url = INVOICE_DETAIL;
-            }
-            else if(action.contains("ViewInvoice")){
+            } else if (action.equals("ViewInvoice")) {
                 url = INVOICE;
+            } else if (action.equals("Forward")) {
+                url = INSERT_PAGE;
+            } else if(action.equals("changePassword")){
+                url = CHANGE_PASSWORD;
             }
             else {
                 request.setAttribute("ERROR", "This action is not supported");

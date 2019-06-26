@@ -3,25 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huytg.user.pet.controllers;
+package huytg.cart.controller;
 
-import huytg.dtos.PetDTO;
-import huytg.dtos.RegistrationDetailDTO;
-import huytg.models.PetDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author SE130226
  */
-public class LoadController extends HttpServlet {
+public class ViewController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,21 +30,8 @@ public class LoadController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "user_petmanage/petSearch.jsp";
         
-        try {
-            PetDAO dao = new PetDAO();
-            
-            HttpSession session = request.getSession();
-            RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO) session.getAttribute("USER");
-            
-            List<PetDTO> list = dao.getByUsername(dtoReDe.getUsername());
-            request.setAttribute("LIST_Pet", list);
-        } catch (Exception e) {
-            log("Error at PetLoadController: "+e.getMessage());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-        }
+        request.getRequestDispatcher("accessory/viewCart.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

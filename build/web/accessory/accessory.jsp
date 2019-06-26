@@ -23,7 +23,7 @@
 
         <link rel="stylesheet" type="text/css" href="fontFamily.css">
         <link rel="stylesheet" type="text/css" href="css/NavBar.css">
-        <link rel="stylesheet" type="text/css" href="../css/accessory.css">
+        <link rel="stylesheet" type="text/css" href="css/accessory.css">
         <link rel="stylesheet" type="text/css" href="css/SnackBar.css">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -91,12 +91,6 @@
                     <li><a href="<c:out value='${url_Feeding_Access}' />">Feeding</a></li>
                     <li><a href="<c:out value='${url_Bedding_Access}' />">Bedding</a></li>
                 </ul>
-
-                <a href="viewCart.jsp" target="_blank" class="badge badge-primary" id="myCart">
-                    <div id="cart-icon">
-                        <i class="fa fa-shopping-cart" style="font-size: 20px;"></i> <span class="badge badge-danger ml-2" id="cart-size">${sessionScope.CART.size}</span>
-                    </div>
-                </a>
             </div>
         </div>
         <div id="container-right">

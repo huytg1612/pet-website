@@ -3,26 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huytg.user.pet.controllers;
+package huytg.controllers;
 
-import huytg.dtos.PetDTO;
-import huytg.dtos.RegistrationDetailDTO;
-import huytg.models.PetDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author SE130226
  */
-public class LoadController extends HttpServlet {
-
+public class ForwardController extends HttpServlet {
+    private static final String ERROR = "error.jsp";
+    private static final String CHANGE_PASSWORD = "user/changePassword.jsp";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,19 +32,18 @@ public class LoadController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "user_petmanage/petSearch.jsp";
-        
+        String url = ERROR;
         try {
-            PetDAO dao = new PetDAO();
+            String page = request.getParameter("page");
             
-            HttpSession session = request.getSession();
-            RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO) session.getAttribute("USER");
-            
-            List<PetDTO> list = dao.getByUsername(dtoReDe.getUsername());
-            request.setAttribute("LIST_Pet", list);
+            if(page.equals("change_password")){
+                url = CHANGE_PASSWORD;
+            }else{
+                request.setAttribute("ERROR", "Page is not found");
+            }
         } catch (Exception e) {
-            log("Error at PetLoadController: "+e.getMessage());
-        } finally {
+            log("Error at ForwardController: "+e.getMessage());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

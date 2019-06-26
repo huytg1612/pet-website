@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huytg.user.pet.controllers;
+package huytg.controllers;
 
-import huytg.dtos.PetDTO;
 import huytg.dtos.RegistrationDetailDTO;
-import huytg.models.PetDAO;
+import huytg.dtos.RegistrationErrorObject;
+import huytg.models.RegistrationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author SE130226
  */
-public class LoadController extends HttpServlet {
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,20 +34,50 @@ public class LoadController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "user_petmanage/petSearch.jsp";
-        
+        boolean isValid = true;
+
         try {
-            PetDAO dao = new PetDAO();
-            
+            String oldPass = request.getParameter("txtOldPassword");
+            String newPass = request.getParameter("txtNewPassword");
+            String confirm = request.getParameter("txtConfirm");
+
             HttpSession session = request.getSession();
+
+            RegistrationDAO dao = new RegistrationDAO();
             RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO) session.getAttribute("USER");
-            
-            List<PetDTO> list = dao.getByUsername(dtoReDe.getUsername());
-            request.setAttribute("LIST_Pet", list);
+
+            RegistrationErrorObject errorObj = new RegistrationErrorObject();
+            String username = dtoReDe.getUsername();
+
+            if (newPass.isEmpty()) {
+                errorObj.setPassword("Password can't be blank");
+                isValid = false;
+            }
+            if (!confirm.equals(newPass)) {
+                errorObj.setConfirm("Confirm is not match");
+                isValid = false;
+            }
+
+            if (isValid) {
+                if (oldPass.equals(dao.getPassword(username))) {
+                    if (dao.changePassword(username, newPass)) {
+                        request.setAttribute("NOTICE", "Change password successful");
+                    } else {
+                        request.setAttribute("NOTICE", "Change password failed");
+                    }
+                } else {
+                    errorObj.setOldPassword("Old password is not correct");
+                    request.setAttribute("INVALID", errorObj);
+                    
+                }
+            } else {
+                request.setAttribute("INVALID", errorObj);
+            }
+
         } catch (Exception e) {
-            log("Error at PetLoadController: "+e.getMessage());
+            log("Error at ChangePasswordController: "+e.getMessage());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("user/changePassword.jsp").forward(request, response);
         }
     }
 
