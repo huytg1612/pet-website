@@ -3,35 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/controllers/SearchController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/user/pet/controllers/InsertController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/accessory/accessory.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/user/profile.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/user_petmanage/petInsert.jsp</file>
             <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/Components/UserSideBar.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/user/pet/controllers/EditController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/models/PetDAO.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/css/UserSideBar.css</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/controllers/RegisterController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/css/user_page.css</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/cart/controller/MainController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/user_petmanage/petEdit.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/accessory/controller/MainController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/controllers/MainController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/js/viewCart.js</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/accessory/accessoryDetail.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/user_petmanage/petSearch.jsp</file>
+            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/css/register.css</file>
+            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/controllers/ChangePasswordController.java</file>
             <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/Components/NavBar.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/Components/SideBar.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/user/invoice.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/user/pet/controllers/MainController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/css/petSearch.css</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/user/pet/controllers/LoadController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/controllers/LogoutController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/controllers/UpdateController.java</file>
+            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/accessory/accessory.jsp</file>
+            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/index.jsp</file>
             <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/accessory/viewCart.jsp</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/user/pet/controllers/UpdateController.java</file>
-            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/cart/controller/ViewController.java</file>
+            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/user/changePassword.jsp</file>
+            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/web/user/profile.jsp</file>
+            <file>file:/C:/Users/SE130226/Desktop/huytg/study/CN4/PRJ321/Code/PetLand/src/java/huytg/controllers/ForwardController.java</file>
         </group>
     </open-files>
 </project-private>
