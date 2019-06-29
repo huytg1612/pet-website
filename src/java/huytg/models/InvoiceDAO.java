@@ -43,7 +43,7 @@ public class InvoiceDAO implements Serializable{
             preStm = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             
             preStm.setString(1, dto.getUsername());
-            preStm.setString(2, GetDate.getCurrentDate().toString());
+            preStm.setString(2, GetDate.getCurrentDateTime().toString());
             preStm.setFloat(3, dto.getTotal());
             
             preStm.executeUpdate();
@@ -78,7 +78,7 @@ public class InvoiceDAO implements Serializable{
             list = new ArrayList<>();
             while(rs.next()){
                 id = rs.getInt("ID");
-                date = rs.getDate("Date").toString();
+                date = rs.getTimestamp("Date").toString();
                 total = rs.getInt("Total");
                 
                 dto = new InvoiceDTO(id, username, date, total);

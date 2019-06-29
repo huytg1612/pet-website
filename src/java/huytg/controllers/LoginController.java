@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
             String role = dao.checkLogin(username, password);
 
             HttpSession session = request.getSession();
-
+            
             if (!role.equals("failed")) {
                 if (role.equals("admin")) {
                     url = ADMIN;
@@ -60,7 +60,9 @@ public class LoginController extends HttpServlet {
                 
                 RegistrationDetailDAO daoReDe = new RegistrationDetailDAO();
                 RegistrationDetailDTO dtoReDe = daoReDe.searchByPK(username);
+                
                 session.setAttribute("USER", new RegistrationDetailDTO(dtoReDe.getUsername(), dtoReDe.getFirstName(), dtoReDe.getLastName()));
+                session.setAttribute("ROLE", role);
             } else {
                 RegistrationErrorObject errorObj = new RegistrationErrorObject();
                 errorObj.setLogin("Invalid username or password");

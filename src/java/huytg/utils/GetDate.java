@@ -15,4 +15,9 @@ public class GetDate {
         java.util.Date today = new java.util.Date();
         return new java.sql.Date(today.getTime());
     }
+    
+    public static java.sql.Timestamp getCurrentDateTime(){
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Timestamp(today.getTime());
+    }
 }
