@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 30, 2019, 1:48:19 PM
+    Author     : SE130226
+*/
+
+.well-block {
+    background-color: #fff;
+    border: 1px solid #e9e6e8;
+    padding: 40px;
+}
+
+.well-title {
+    margin-bottom: 40px;
+}
+.appoinment-container{
+    float: left;
+    width: 100% !important;
+    max-width: 100%;
+    padding: 5%;
+}
+.appoinment-image{
+    width: 65%;
+    height: 300px;
+    margin-left: 15px;
+    float: left;
+}
+.appoinment-beside-image{
+    float: left;
+    width: 31.6%;
+    margin-left: 1%;
+    height: 300px;
+    background-color: #70bdd6;
+}
+.appoinment-detail{
+    width: 97.6%;
+    margin-left: 15px;
+    padding: 1% 10%;
+}

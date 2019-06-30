@@ -1,9 +1,3 @@
-<%-- 
-    Document   : NavBar
-    Created on : Jun 2, 2019, 10:56:52 AM
-    Author     : SE130226
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="huytg.dtos.RegistrationDetailDTO"%>
 <%@page import="huytg.dtos.RegistrationDTO"%>
@@ -17,6 +11,10 @@
     <c:param name="page" value="1"/>
 </c:url>
 
+<c:url value="ServiceMainController" var="url_Service">
+    <c:param name="action" value="Load"/>
+</c:url>
+
 <c:url value="MainController" var="url_Invoice">
     <c:param name="action" value="ViewInvoice"/>
 </c:url>
@@ -28,7 +26,7 @@
         <a href="#" class="nav-bar-link">News</a>
         <a href="#" class="nav-bar-link">About</a>
         <a href="<c:out value="${url_Accessory}" />" class="nav-bar-link">Accessory</a>
-        <a href="#" class="nav-bar-link">Service</a>
+        <a href="${url_Service}" class="nav-bar-link">Service</a>
         <%
             if (dto != null) {
         %><div class="dropdown show" style="float: right;margin-right: 10%">
