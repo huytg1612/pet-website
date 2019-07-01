@@ -21,6 +21,7 @@ public class MainController extends HttpServlet {
     private static final String LOAD = "ServiceLoadController";
     private static final String SEARCH = "ServiceSearchController";
     private static final String ERROR = "error.jsp";
+    private static final String CHECKOUT = "ServiceCheckOutController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,6 +44,8 @@ public class MainController extends HttpServlet {
                 url = LOAD;
             } else if (action.equals("Search")) {
                 url = SEARCH;
+            } else if (action.equals("CheckOut")) {
+                url = CHECKOUT;
             } else {
                 request.setAttribute("ERROR", "This action is not supported");
             }

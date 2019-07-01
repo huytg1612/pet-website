@@ -28,7 +28,7 @@
 
         <title>JSP Page</title>
     </head>
-    <body onload="setDayPicker()">
+    <body onload="setRequiredLogin()">
         <%@include file="../Components/NavBar.jsp" %>
 
         <c:set var="dtoService" value="${requestScope.DTO_Service}"/>
@@ -41,40 +41,28 @@
                     <h4>Details</h4>
                     <p>${dtoService.descrip}</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" id="form-appointment">
                     <div class="well-block">
                         <div class="well-title">
                             <h2>Book an Appointment</h2>
                         </div>
-                        <form>
+                        <form action="ServiceMainController" method="POST">
                             <!-- Form start -->
+                            <input type="hidden" name="txtServiceID" value="${dtoService.id}"/>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label" for="name">Name</label>
-                                        <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
-                                    </div>
-                                </div>
-                                <!-- Text input-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label" for="email">Email</label>
-                                        <input id="email" name="email" type="text" placeholder="E-Mail" class="form-control input-md">
-                                    </div>
-                                </div>
                                 <!-- Text input-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label" for="date">Preferred Date</label>
-                                        <select class="form-control input-md" id="date-picker" onchange="setTimePicker()">
+                                        <select class="form-control input-md" id="date-picker" onchange="setTimePicker()" name="cboDate">
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Select Basic -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="time">Preferred Time</label>
-                                        <select id="time" name="time" class="form-control">
+                                        <label class="control-label" for="time" >Preferred Time</label>
+                                        <select id="time" class="form-control" name="cboTime">
                                         </select>
                                     </div>
                                 </div>
@@ -82,11 +70,10 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label" for="appointmentfor">Appointment For</label>
-                                        <select id="appointmentfor" name="appointmentfor" class="form-control">
-                                            <option value="Service#1">Service#1</option>
-                                            <option value="Service#2">Service#2</option>
-                                            <option value="Service#3">Service#3</option>
-                                            <option value="Service#4">Service#4</option>
+                                        <select id="appointmentfor" class="form-control" name="cboPetID">
+                                            <c:forEach var="dtoPet" items="${requestScope.DTO_Pet}">
+                                                <option value="${dtoPet.id}">${dtoPet.name}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>
@@ -94,18 +81,24 @@
                                     <div class="form-group">
                                         <label class="control-label" >Price</label>
                                         <h3>${dtoService.price}</h3>
+                                        <input type="hidden" name="txtTotal" value="${dtoService.price}"/>
                                     </div>
                                 </div>
                                 <!-- Button -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button id="singlebutton" name="singlebutton" class="btn btn-default">Make An Appointment</button>
+                                        <button id="singlebutton" name="action" value="CheckOut" class="btn btn-default">Make An Appointment</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
                         <!-- form end -->
                     </div>
+
+                    <div id="required-login-div">
+                        <h3>You must login to make an appointment</h3>
+                        <a href="login.jsp">Go to login now?</a>
+                    </div>                
                 </div>
                 <div class="col-md-6">
                     <div class="well-block">
@@ -136,6 +129,22 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            function setRequiredLogin() {
+                var requiredLogin = document.getElementById('required-login-div');
+
+                if (<%= session.getAttribute("USER") == null %>) {
+                    $("#form-appointment *").attr("disabled", "disabled").off('click');
+                    requiredLogin.style.display = 'block';
+                } else {
+                    $("#form-appointment *").attr("enabled", "enabled").on('click');
+                    requiredLogin.style.display = 'none';
+                }
+
+                setDayPicker();
+            }
+        </script>
         <script type="text/javascript" src="js/appointment.js"></script>
     </body>
 </html>

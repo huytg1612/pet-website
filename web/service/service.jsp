@@ -20,15 +20,17 @@
         <link rel="stylesheet" type="text/css" href="fontFamily.css"/>
         <link rel="stylesheet" type="text/css" href="css/NavBar.css"/>
         <link rel="stylesheet" type="text/css" href="css/service.css"/>
+        <link rel="stylesheet" type="text/css" href="css/SnackBar.css"/>
 
         <title>JSP Page</title>
     </head>
-    <body>
+    <body onload="showNotice()">
         <%@include file="../Components/NavBar.jsp" %>
 
         <div style="float:left;padding: 2% 12%;">
             <div id="container-service">
                 <c:forEach var="dtoService" items="${requestScope.LIST_Service}">
+                    <h4 style="text-align: center;">${dtoService.name}</h4>
                     <div class="service">
                         <img src="<%= request.getContextPath()%>${dtoService.image}" class="service-image">
                         <form action="ServiceMainController" method="POST">
@@ -39,5 +41,14 @@
                 </c:forEach>
             </div>
         </div>
+        <div id="snackbar"></div>
+        <script type="text/javascript" src="js/SnackBar.js"></script>
+        <script type="text/javascript">
+        function  showNotice() {
+            if (<%= request.getAttribute("NOTICE") != null%>) {
+                showSnackBar('${requestScope.NOTICE}');
+            }
+        }
+        </script>
     </body>
 </html>

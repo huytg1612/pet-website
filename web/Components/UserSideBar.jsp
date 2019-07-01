@@ -49,7 +49,7 @@
         </div>
 
         <a href="MainController?action=ViewInvoice" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Your invoice</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+        <a href="ScheduleMainController?action=Load" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Your schedule</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>

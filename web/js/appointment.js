@@ -17,8 +17,8 @@ function setDayPicker() {
         var date = today.getUTCDate();
         var year = today.getUTCFullYear();
 
-        opt.appendChild(document.createTextNode(day + ' (' + year + '/' + month + '/' + date + ')'));
-        opt.value = day + ' (' + year + '/' + month + '/' + date + ')';
+        opt.appendChild(document.createTextNode(day + ' (' + year + '-' + month + '-' + date + ')'));
+        opt.value = year + '-' + month + '-' + date + '';
 
         today.setDate(today.getDate() + 1);
 

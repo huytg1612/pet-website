@@ -168,6 +168,30 @@
         <servlet-name>ServiceSearchController</servlet-name>
         <servlet-class>huytg.service.controllers.SearchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServiceCheckOutController</servlet-name>
+        <servlet-class>huytg.service.controllers.CheckOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ScheduleMainController</servlet-name>
+        <servlet-class>huytg.service_schedule.controller.MainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ScheduleLoadController</servlet-name>
+        <servlet-class>huytg.service_schedule.controller.LoadController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminScheduleMainController</servlet-name>
+        <servlet-class>huytg.admin.schedule.controller.MainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminScheduleSearchController</servlet-name>
+        <servlet-class>huytg.admin.schedule.controller.SearchController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminScheduleUpdateController</servlet-name>
+        <servlet-class>huytg.admin.schedule.controller.UpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -327,6 +351,30 @@
     <servlet-mapping>
         <servlet-name>ServiceSearchController</servlet-name>
         <url-pattern>/ServiceSearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServiceCheckOutController</servlet-name>
+        <url-pattern>/ServiceCheckOutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScheduleMainController</servlet-name>
+        <url-pattern>/ScheduleMainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScheduleLoadController</servlet-name>
+        <url-pattern>/ScheduleLoadController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminScheduleMainController</servlet-name>
+        <url-pattern>/AdminScheduleMainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminScheduleSearchController</servlet-name>
+        <url-pattern>/AdminScheduleSearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminScheduleUpdateController</servlet-name>
+        <url-pattern>/AdminScheduleUpdateController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

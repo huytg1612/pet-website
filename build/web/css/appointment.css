@@ -40,4 +40,21 @@ and open the template in the editor.
     width: 97.6%;
     margin-left: 15px;
     padding: 1% 10%;
+
+}
+#form-appointment{
+    position: relative;
+}
+#required-login-div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    background-color: rgba(255,255,255,0.8);
+    
+    text-align: center;
+}
+#required-login-div h3{
+    margin-top: 40%;
 }

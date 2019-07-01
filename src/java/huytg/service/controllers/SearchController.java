@@ -5,14 +5,19 @@
  */
 package huytg.service.controllers;
 
+import huytg.dtos.PetDTO;
+import huytg.dtos.RegistrationDetailDTO;
 import huytg.dtos.ServiceDTO;
+import huytg.models.PetDAO;
 import huytg.models.ServiceDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,12 +40,21 @@ public class SearchController extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("txtServiceID"));
             
-            System.out.println(id);
-            
             ServiceDAO dao = new ServiceDAO();
             ServiceDTO dto = dao.findByPK(id);
             
+            HttpSession session = request.getSession();
+            RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO)session.getAttribute("USER");
+            
+            List<PetDTO> list = null;
+            PetDAO daoPet = new PetDAO();
+            
+            if(dtoReDe != null){
+                list = daoPet.getByUsername(dtoReDe.getUsername());
+            }
+            
             request.setAttribute("DTO_Service", dto);
+            request.setAttribute("DTO_Pet", list);
         } catch (Exception e) {
             log("Error at ServiceSearchController: "+e.getMessage());
         } finally {

@@ -124,7 +124,7 @@ public class RoleFilter implements Filter {
             if (action != null) {
                 if (!action.equals("Login") && !action.equals("Register") 
                         && !resource.contains("/Accessory") && !action.equals("CheckOut") && !resource.contains("/Cart")
-                        && !resource.contains("/Service")) {
+                        && !resource.contains("/Service")){
                     url = LOGIN;
                 }
             }
