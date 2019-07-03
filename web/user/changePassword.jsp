@@ -23,6 +23,7 @@
         <link rel="stylesheet" type="text/css" href="css/UserSideBar.css">
         <link rel="stylesheet" type="text/css" href="css/user_page.css">
         <link rel="stylesheet" type="text/css" href="fontFamily.css">
+        <link rel="stylesheet" type="text/css" href="css/SnackBar.css">
 
         <title>JSP Page</title>
         <style>
@@ -31,7 +32,7 @@
             }
         </style>
     </head>
-    <body onload="onLoad()" style="" id="body-style">
+    <body onload="showNotice()" style="" id="body-style">
         <%
             RegistrationDetailDTO dtoSession = (RegistrationDetailDTO) session.getAttribute("USER");
             if (dtoSession == null) {
@@ -68,10 +69,15 @@
                 <button type="submit" name="action" value="changePassword" class="btn btn-primary">Change password</button>
             </form>            
         </div>
-
+        <div id="snackbar"></div>
     </body>
+    <script type="text/javascript" src="js/SnackBar.js"></script>
     <script type="text/javascript">
-
+        function showNotice() {
+            if (<%= request.getAttribute("NOTICE") != null%>) {
+                showSnackBar('${requestScope.NOTICE}');
+            }
+        }
     </script>
 </body>
 </html>

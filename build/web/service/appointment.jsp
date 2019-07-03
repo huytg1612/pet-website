@@ -25,6 +25,7 @@
         <link rel="stylesheet" type="text/css" href="fontFamily.css"/>
         <link rel="stylesheet" type="text/css" href="css/NavBar.css"/>
         <link rel="stylesheet" type="text/css" href="css/appointment.css"/>
+        <link rel="stylesheet" type="text/css" href="css/Footer.css">
 
         <title>JSP Page</title>
     </head>
@@ -129,12 +130,12 @@
                 </div>
             </div>
         </div>
-
+        <%@include file="../Components/Footer.jsp" %>
         <script type="text/javascript">
             function setRequiredLogin() {
                 var requiredLogin = document.getElementById('required-login-div');
 
-                if (<%= session.getAttribute("USER") == null %>) {
+                if (<%= session.getAttribute("USER") == null%>) {
                     $("#form-appointment *").attr("disabled", "disabled").off('click');
                     requiredLogin.style.display = 'block';
                 } else {

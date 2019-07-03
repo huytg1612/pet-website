@@ -28,7 +28,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body onload="showNotice()">
         <%@include file="../Components/NavBar.jsp" %>
 
         <div id="shopping-cart">
@@ -86,7 +86,9 @@
                                 <td colspan="2" class="hidden-xs"></td>
                                 <td class="hidden-xs text-center"><strong>Total ${sessionScope.CART.total}</strong></td>
                                 <td>
-                                    <button class="btn btn-success btn-block" onclick="checkOut()">Checkout <i class="fa fa-angle-right"></i></button>
+                                    <form action="CartMainController" method="POST">
+                                        <button class="btn btn-success btn-block" name="action" value="CheckOut" type="submit">Checkout <i class="fa fa-angle-right"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         </tfoot>
@@ -121,5 +123,20 @@
                 </c:if>
             </div>
         </div>
+        <script>
+            function showNotice() {
+
+                var myModal = document.getElementById("myModal");
+                var notice = document.getElementById("myModal-notice");
+                var link = document.getElementById("myModal-link");
+
+                if (<%= request.getAttribute("NOTICE") != null%>) {
+                    if (${requestScope.NOTICE eq "Login"}) {
+                        notice.innerHTML = "You need to login to check out";
+                        myModal.style.display = "block";
+                    }
+                }
+            }
+        </script>
     </body>
 </html>

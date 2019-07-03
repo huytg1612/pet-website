@@ -43,7 +43,7 @@ public class SearchController extends HttpServlet {
         } catch (Exception e) {
             log("Error at AdminScheduleSearchController: "+e.getMessage());
         } finally {
-            request.getRequestDispatcher("adminSchedule.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/adminSchedule.jsp").forward(request, response);
         }
     }
 

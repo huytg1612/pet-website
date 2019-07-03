@@ -26,7 +26,7 @@
         <title>JSP Page</title>
     </head>
     <body class="w3-light-grey">
-        <%@include file="Components/SideBar.jsp" %>
+        <%@include file="../Components/SideBar.jsp" %>
 
         <%            
             List<AccessoryDTO> list = (List) request.getAttribute("List_Accessory");

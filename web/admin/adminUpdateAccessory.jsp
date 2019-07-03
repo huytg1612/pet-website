@@ -26,7 +26,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="Components/SideBar.jsp" %>
+        <%@include file="../Components/SideBar.jsp" %>
 
     <c:set var="dtoAccess" value="${requestScope.DTO_Accessory}"/>
 

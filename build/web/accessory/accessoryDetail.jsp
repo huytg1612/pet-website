@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" href="fontFamily.css">
         <link rel="stylesheet" type="text/css" href="css/NavBar.css">
         <link rel="stylesheet" type="text/css" href="css/accessoryDetail.css">
+        <link rel="stylesheet" type="text/css" href="css/Footer.css">
 
     </head>
     <body>
@@ -59,6 +60,6 @@
             <h1 style="text-align: center">Not found accessory</h1>
         </c:if>
 
-            
+            <%@include file="../Components/Footer.jsp" %>   
     </body>
 </html>

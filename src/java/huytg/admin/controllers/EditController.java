@@ -43,7 +43,7 @@ public class EditController extends HttpServlet {
         } catch (Exception e) {
             log("Error at AdminEditController: "+e.getMessage());
         } finally {
-            request.getRequestDispatcher("adminUpdateAccessory.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/adminUpdateAccessory.jsp").forward(request, response);
         }
     }
 

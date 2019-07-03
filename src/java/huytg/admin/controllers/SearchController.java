@@ -44,7 +44,7 @@ public class SearchController extends HttpServlet {
         } catch (Exception e) {
             
         } finally {
-            request.getRequestDispatcher("adminAccessory.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/adminAccessory.jsp").forward(request, response);
         }
     }
 

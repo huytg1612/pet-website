@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" href="css/NavBar.css"/>
         <link rel="stylesheet" type="text/css" href="css/service.css"/>
         <link rel="stylesheet" type="text/css" href="css/SnackBar.css"/>
+        <link rel="stylesheet" type="text/css" href="css/Footer.css">
 
         <title>JSP Page</title>
     </head>
@@ -41,6 +42,7 @@
                 </c:forEach>
             </div>
         </div>
+        <%@include file="../Components/Footer.jsp" %>
         <div id="snackbar"></div>
         <script type="text/javascript" src="js/SnackBar.js"></script>
         <script type="text/javascript">

@@ -1,16 +1,13 @@
 <%-- 
-    Document   : adminUpdateAccessory
-    Created on : Jun 8, 2019, 10:43:07 AM
+    Document   : adminInsertAccessory
+    Created on : Jun 6, 2019, 8:03:24 PM
     Author     : SE130226
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -25,38 +22,37 @@
 
         <title>JSP Page</title>
     </head>
-    <body>
-        <%@include file="Components/SideBar.jsp" %>
-
-    <c:set var="dtoAccess" value="${requestScope.DTO_Accessory}"/>
-
-    <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-        <c:if test = "${not empty dtoAccess}">
+    <%
+        String notice = (String) request.getAttribute("NOTICE");
+    %>
+    <body class="w3-light-grey" onload="onLoad()">
+        <%@include file="../Components/SideBar.jsp" %>
+        <div class="w3-main" style="margin-left:300px;margin-top:43px;">
             <div class="form-container" style="padding: 2% 20%;">
                 <form action="AdminMainController" method="POST"  style="background-color: white;padding: 2%">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">ID</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Accessory ID"
-                               name="txtAccessoryId" value="${dtoAccess.getId()}" readonly>
+                               name="txtAccessoryId">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Name</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Accessory Name"
-                               name="txtAccessoryName" value="${dtoAccess.getName()}">
+                               name="txtAccessoryName">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Price</label>
                         <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Accessory Price"
-                               name="txtAccessoryPrice" value="${dtoAccess.getPrice()}" min="0">
+                               name="txtAccessoryPrice">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Quantity</label>
-                        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Accessory Quantity"
-                               name="txtAccessoryQuantity" value="${dtoAccess.getQuantity()}" min="0">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Accessory Quantity"
+                               name="txtAccessoryQuantity">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Type</label>
-                        <select class="form-control" id="cboType" name="cboType">
+                        <select class="form-control" id="exampleFormControlSelect1" name="cboType">
                             <option>Collar</option>
                             <option>Clothes</option>
                             <option>Toys</option>
@@ -66,7 +62,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Made in</label>
-                        <select class="form-control" id="cboMadeIn" name="cboMadeIn">
+                        <select class="form-control" id="exampleFormControlSelect1" name="cboMadeIn">
                             <option>Vietnam</option>
                             <option>China</option>
                             <option>Japan</option>
@@ -76,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Use for</label>
-                        <select multiple class="form-control" id="cboMultiUseFor" name="cboMultiUseFor" value="${dtoAccess.getUseFor()}">
+                        <select multiple class="form-control" id="exampleFormControlSelect2" name="cboMultiUseFor">
                             <option>Dog</option>
                             <option>Cat</option>
                             <option>Fish</option>
@@ -85,52 +81,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Status</label>
-                        <select class="form-control" id="cboStatus" name="cboStatus">
-                            <option>Show</option>
-                            <option>Hidden</option>
-                        </select>
+                        <label for="exampleFormControlFile1">Choose image</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/png, image/jpeg" name="fileImage">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="txtAccessoryDescrip" value="${dtoAccess.getDescription()}"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="txtAccessoryDescrip"></textarea>
                     </div>
                     <br>
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="action" value="Update">Update</button>
-                    <input type="hidden" name="txtAccessorySearch" value="${requestScope.txtAccessorySearch}"/>
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="action" value="Insert">Insert</button>
                 </form>
             </div>
-        </c:if>
-        <c:if test="${empty dtoAccess}">
-            <h1 style="text-align: center">Not thing update</h1>
-            <a href="adminAccessory.jsp">Search to Update</a>
-        </c:if>
-    </div>
-</body>
-<script type="text/javascript">
-    window.onload = function () {
-        var cboType = document.getElementById("cboType");
-        var cboMadeIn = document.getElementById("cboMadeIn");
-        var cboStatus = document.getElementById("cboStatus");
-        var cboMultiUseFor = document.getElementById("cboMultiUseFor");
-
-        cboType.selectedIndex = "${dtoAccess.getType()-1}";
-        cboMadeIn.value = "${dtoAccess.getMadeIn()}";
-        cboStatus.selectedIndex = "${dtoAccess.getStatus()}";
-        
-        var useFor = "${dtoAccess.getUseFor()}";
-        var useFors = useFor.split(",");
-        
-        console.log(1);
-        for(var i = 0 ;i < useFors.length;i++){
-            for(var j = 0; j < cboMultiUseFor.length;j++){
-                if(cboMultiUseFor[j].innerHTML === useFors[i]){
-                    console.log(123);
-                    cboMultiUseFor[j].selected = true;
-                    break;
-                }
+        </div>
+    </body>
+    <script type="text/javascript">
+        function onLoad() {
+            if (<%= notice != null%>) {
+                alert("Insert successful");
             }
-        };
-    };
-</script>
+        }
+    </script>
 </html>

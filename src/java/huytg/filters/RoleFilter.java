@@ -25,8 +25,8 @@ import javax.servlet.http.HttpSession;
  */
 public class RoleFilter implements Filter {
 
-    private static final String CUSTOMER = "index.jsp";
-    private static final String ADMIN = "admin.jsp";
+    private static final String CUSTOMER = "SystemLoadController";
+    private static final String ADMIN = "admin/admin.jsp";
     private static final String LOGIN = "login.jsp";
 
     private static final boolean debug = true;
@@ -122,14 +122,21 @@ public class RoleFilter implements Filter {
 
         if (role == null) {
             if (action != null) {
-                if (!action.equals("Login") && !action.equals("Register") 
+                if (!action.equals("Login") && !action.equals("Register")
                         && !resource.contains("/Accessory") && !action.equals("CheckOut") && !resource.contains("/Cart")
-                        && !resource.contains("/Service")){
+                        && !resource.contains("/Service")) {
                     url = LOGIN;
+                }
+            } else {
+                if (resource.contains("/index.jsp")) {
+                    url = CUSTOMER;
                 }
             }
         } else {
-            if (resource.contains("/login.jsp")) {
+            if (resource.contains("/index.jsp")) {
+                url = CUSTOMER;
+            }
+            else if (resource.contains("/login.jsp")) {
                 if (role.equals("customer")) {
                     url = CUSTOMER;
                 } else if (role.equals("admin")) {
@@ -154,9 +161,9 @@ public class RoleFilter implements Filter {
                 }
             }
         }
-        
+
         System.out.println(url);
-        
+
         if (url != null) {
             req.getRequestDispatcher(url).forward(request, response);
 

@@ -1,0 +1,91 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 3, 2019, 2:02:14 PM
+    Author     : SE130226
+*/
+#body-container{
+    width: 100%;
+    height: auto;
+    float: left;
+}
+.nav-title{
+    width: 100%;
+    height: auto;
+    background-color: #e53a3a;
+    padding: 0.5% 2%;
+    float: left;
+    margin: 20px 0;
+}
+.nav-title h3{
+    color: white;
+    float: left;
+}
+.sub-container{
+    padding: 0.5% 2%;
+}
+.top-accessory{
+    width: 18%;
+    float: left;
+    border: none;
+    margin: 1%;
+}
+.service{
+    width: 16%;
+    height: auto;
+    border: solid 1px black;
+    float: left;
+    margin: 0.3%;
+}
+.link-service{
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin: 0 2%;
+
+}
+#sub-container-left{
+    width: 50%;
+    height: auto;
+    padding: 2% 0;
+    padding-left: 2%;
+    padding-right: 0.5%;
+    float: left;
+}
+.service-info{
+    width: 50%;
+    height: 270px;
+    float: left;
+    border: 1px solid #c8c8c8;
+    text-align: center;
+}
+.service-info img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#third-nav-title{
+    color: #333;
+    margin: 0;
+    margin: 0 10%;
+    line-height: 54.47px;
+}
+.nav-title p{
+    line-height: 54.47px;
+    margin: 0;
+}
+#sub-container-right{
+    width: 50%;
+    height: auto;
+    padding: 2% 0;
+    padding-left: 0.5%;
+    padding-right: 2%;
+    float: right;
+}
+#sub-container-right img{
+    width: 100%;
+    height: 540px;
+}

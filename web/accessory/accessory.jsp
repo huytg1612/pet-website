@@ -25,6 +25,7 @@
         <link rel="stylesheet" type="text/css" href="css/NavBar.css">
         <link rel="stylesheet" type="text/css" href="css/accessory.css">
         <link rel="stylesheet" type="text/css" href="css/SnackBar.css">
+        <link rel="stylesheet" type="text/css" href="css/Footer.css">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -144,7 +145,7 @@
                 <li class="page-item" id="page-item-next"><a class="page-link" href="${urlNext}">Next</a></li>
             </ul>
         </nav>
-
+        <%@include file="../Components/Footer.jsp" %>
         <div id="snackbar"></div>
         <script type="text/javascript" src="js/accessory.js"></script>
         <script type="text/javascript" src="js/SnackBar.js"></script>

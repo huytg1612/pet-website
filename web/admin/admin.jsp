@@ -25,7 +25,7 @@
     </head>
 
     <body class="w3-light-grey">
-        <%@include file="Components/SideBar.jsp" %>
+        <%@include file="../Components/SideBar.jsp" %>
 
         <!-- Overlay effect when opening sidebar on small screens -->
 

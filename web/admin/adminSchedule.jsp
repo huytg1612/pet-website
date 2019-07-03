@@ -24,7 +24,7 @@
         <title>JSP Page</title>
     </head>
     <body class="w3-light-grey"> 
-        <%@include file="Components/SideBar.jsp" %>
+        <%@include file="../Components/SideBar.jsp" %>
 
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">

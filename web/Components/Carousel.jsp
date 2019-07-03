@@ -4,7 +4,7 @@
     Author     : SE130226
 --%>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding: 2% 4%;">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -12,13 +12,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="<%= request.getContextPath() %>/images/Carousel/slide1.jpg" alt="First slide">
+            <img class="d-block w-100" src="<%= request.getContextPath()%>/images/Carousel/slide1.jpg" alt="First slide" style="height: 340px !important;">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100"src="<%= request.getContextPath() %>/images/Carousel/slide2.jpg" alt="Second slide">
+            <img class="d-block w-100"src="<%= request.getContextPath()%>/images/Carousel/slide2.jpg" alt="Second slide" style="height: 340px !important;">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="<%= request.getContextPath() %>/images/Carousel/slide3.jpg" alt="Third slide">
+            <img class="d-block w-100" src="<%= request.getContextPath()%>/images/Carousel/slide3.jpg" alt="Third slide" style="height: 340px !important;">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

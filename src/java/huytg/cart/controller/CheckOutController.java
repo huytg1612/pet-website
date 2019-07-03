@@ -22,7 +22,8 @@ import javax.servlet.http.HttpSession;
  * @author SE130226
  */
 public class CheckOutController extends HttpServlet {
-
+    private static final String SUCCESS = "index.jsp";
+    private static final String FAIL = "accessory/viewCart.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,8 +36,8 @@ public class CheckOutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String responseMSG = "Check out failed";
-
+        String url = FAIL;
+        
         try {
             HttpSession session = request.getSession();
 
@@ -50,19 +51,21 @@ public class CheckOutController extends HttpServlet {
                         cart.setCustomerName(user.getUsername());
                         if (checkProcess.checkOut()) {
                             session.setAttribute("CART", null);
-                            responseMSG = "Success";
+                            request.setAttribute("NOTICE", "Check out successfully");
+                            
+                            url = SUCCESS;
                         }
 
                     }
                 }
             } else {
-                responseMSG = "Login";
+                request.setAttribute("NOTICE", "Login");
             }
 
         } catch (Exception e) {
             System.out.println("Error at CartCheckOutController: " + e.getMessage());
         } finally {
-            response.getWriter().write(responseMSG);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -20,7 +20,7 @@
 </c:url>
 
 <div id="nav-bar-container">
-    <h1 id="nav-bar-brand">Petland</h1>
+    <a href="index.jsp" id="nav-bar-logo"><img src="<%= request.getContextPath() %>/images/logo.jpg" width="160px" height="42px"/></a>
     <div id="nav-bar-links">
         <a href="index.jsp" class="nav-bar-link">Home</a>
         <a href="#" class="nav-bar-link">News</a>
@@ -44,7 +44,7 @@
         %><a href="login.jsp" class="nav-bar-link">Login</a><%
             }
             %>
-        <a href="CartMainController?action=ViewCart" target="_blank" class="badge" id="myCart" style="position: relative;">
+        <a href="CartMainController?action=ViewCart" class="badge" id="myCart" style="position: relative;">
             <div id="cart-icon">
                 <i class="fa fa-shopping-cart" style="font-size: 25px;color: black;"></i> <span class="badge badge-warning ml-2" id="cart-size" style="position: absolute;left: 40%;height: 13px;width: 13px;padding: 5%;">${sessionScope.CART.size}</span>
             </div>

@@ -46,14 +46,15 @@
     </div>
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a><a href="AdminForwardController?page=adminChangePassword.jsp" class="w3-bar-item w3-button w3-padding">Change password</a>
+
         <p class="w3-bar-item w3-button w3-padding" style="margin: 0" onclick="myFunction('accessory-list-links')">Accessory</p>
         <div id="accessory-list-links" class="list-links-style" style="display: none">
-            <a href="adminAccessory.jsp" class="w3-bar-item w3-button w3-padding">View Accessory</a>
-            <a href="adminInsertAccessory.jsp" class="w3-bar-item w3-button w3-padding">Insert Accessory</a>
+            <a href="AdminForwardController?page=adminAccessory.jsp" class="w3-bar-item w3-button w3-padding">View Accessory</a>
+            <a href="AdminForwardController?page=adminInsertAccessory.jsp" class="w3-bar-item w3-button w3-padding">Insert Accessory</a>
         </div>
 
-        <a href="adminSchedule.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  View Schedule</a>
+        <a href="AdminForwardController?page=adminSchedule.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  View Schedule</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>

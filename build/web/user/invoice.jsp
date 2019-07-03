@@ -113,8 +113,6 @@
                 </div>
             </div>
         </div>
-
-
         <script type="text/javascript">
             function popUpModal() {
                 if (<%= request.getAttribute("DTO_InvoiceDetails") != null%>)

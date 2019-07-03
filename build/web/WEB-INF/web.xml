@@ -192,6 +192,18 @@
         <servlet-name>AdminScheduleUpdateController</servlet-name>
         <servlet-class>huytg.admin.schedule.controller.UpdateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SystemLoadController</servlet-name>
+        <servlet-class>huytg.system.controllers.LoadController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminForwardController</servlet-name>
+        <servlet-class>huytg.admin.controllers.ForwardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminChangePasswordController</servlet-name>
+        <servlet-class>huytg.admin.controllers.ChangePasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -376,12 +388,24 @@
         <servlet-name>AdminScheduleUpdateController</servlet-name>
         <url-pattern>/AdminScheduleUpdateController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SystemLoadController</servlet-name>
+        <url-pattern>/SystemLoadController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminForwardController</servlet-name>
+        <url-pattern>/AdminForwardController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminChangePasswordController</servlet-name>
+        <url-pattern>/AdminChangePasswordController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>SystemLoadController</welcome-file>
     </welcome-file-list>
 </web-app>

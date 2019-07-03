@@ -25,13 +25,14 @@
         <link rel="stylesheet" type="text/css" href="css/UserSideBar.css">
         <link rel="stylesheet" type="text/css" href="css/user_page.css">
         <link rel="stylesheet" type="text/css" href="fontFamily.css">
+        <link rel="stylesheet" type="text/css" href="css/SnackBar.css">
 
         <title>JSP Page</title>
     </head>
     <%
         String notice = (String) request.getAttribute("NOTICE");
     %>
-    <body onload="onLoad()" style="" id="body-style">
+    <body onload="showNotice()" style="" id="body-style">
         <%
             RegistrationDetailDTO dtoSession = (RegistrationDetailDTO) session.getAttribute("USER");
             if (dtoSession == null) {
@@ -40,12 +41,12 @@
             }
         %>
         <%@include file="../Components/NavBar.jsp" %>
-        
+
         <div style="" id="container-page">
             <%@include file="../Components/UserSideBar.jsp" %>
-            
+
             <c:set var="dtoReDe" value="${requestScope.DTO_ReDe}" />
-            
+
             <form action="MainController" method="POST" style="" id="component-right">
                 <div class="form-group">
                     <label for="validationDefault01">Username: </label>
@@ -78,30 +79,27 @@
                 <div class="form-group">
                     <label for="exampleInputText">Address:</label>
                     <input type="text" class="form-control" id="exampleInputText" name="txtAddress"
-                           value="${dtoReDe.address}" required="false">
+                           value="${dtoReDe.address}">
                 </div>
                 <div class="form-group">
                     Phone:<input type="tel" class="form-control" id="validationDefault02" 
-                                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="txtPhone" required="false" value="${dtoReDe.phone}">
+                                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="txtPhone" value="${dtoReDe.phone}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">About</label>
-                    <textarea class="form-control" name="txtAbout" id="exampleFormControlTextarea1" rows="3" value="${dtoReDe.about}" required="false"></textarea>
+                    <textarea class="form-control" name="txtAbout" id="exampleFormControlTextarea1" rows="3" value="${dtoReDe.about}" >${dtoReDe.about}</textarea>
                 </div>
                 <button type="submit" name="action" value="Update" class="btn btn-primary">Update</button>
             </form>            
         </div>
-
+        <div id="snackbar"></div>
     </body>
+    <script type="text/javascript" src="js/SnackBar.js"></script>
     <script type="text/javascript">
-        function onLoad() {
-        <%
-            if (notice != null) {
-                if (!notice.isEmpty()) {
-        %>alert("Update successful")<%
-                }
+        function showNotice() {
+            if (<%= request.getAttribute("NOTICE") != null%>) {
+                showSnackBar('${requestScope.NOTICE}');
             }
-        %>
-            }
+        }
     </script>
 </html>

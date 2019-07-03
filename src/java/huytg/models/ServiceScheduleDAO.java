@@ -110,14 +110,13 @@ public class ServiceScheduleDAO implements Serializable {
         try {
             conn = MyConnection.getMyConnection();
             String sql = "Select ServiceID From tbl_ServiceSchedule Where "
-                    + "Date = ? AND Time = ? AND ServiceID = ? AND Username = ? AND PetID = ?";
+                    + "Date = ? AND Time = ? AND Username = ? AND PetID = ?";
             preStm = conn.prepareStatement(sql);
 
             preStm.setString(1, dto.getDate());
             preStm.setString(2, dto.getTime());
-            preStm.setInt(3, dto.getServiceID());
-            preStm.setString(4, dto.getUsername());
-            preStm.setInt(5, dto.getPetID());
+            preStm.setString(3, dto.getUsername());
+            preStm.setInt(4, dto.getPetID());
 
             rs = preStm.executeQuery();
 

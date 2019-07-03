@@ -11,6 +11,9 @@ body{
     padding: 0;
     margin: 0;
 }
+#nav-bar-logo{
+    margin-left: 4%;
+}
 #nav-bar-container{
     width: 100%;
     height: auto;
@@ -19,6 +22,7 @@ body{
     background-color: rgb(255,255,255,0.7);
     display: flex;
     align-items: center;
+    border-bottom: solid 2px #4177b8;
 }
 .sticky{
     position: fixed;
@@ -37,14 +41,14 @@ body{
     color:white;
 }
 .nav-bar-link{
-    color:#777777;
+    color: #4177b8;
     font-family: "Lovelo-Black";
     text-decoration: none;
     margin: 0 10px;
     font-size: 12px;
 }
 .nav-bar-link:hover{
-    color:#3f3f3f;
+    color: #325c8e;
 }
 #nav-bar-links{
     float:right;

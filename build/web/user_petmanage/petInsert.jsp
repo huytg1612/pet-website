@@ -25,6 +25,7 @@
         <link rel="stylesheet" type="text/css" href="fontFamily.css">
         <link rel="stylesheet" type="text/css" href="css/user_page.css">
         <link rel="stylesheet" type="text/css" href="css/UserSideBar.css">
+        <link rel="stylesheet" type="text/css" href="css/SnackBar.css">
 
         <title>JSP Page</title>
     </head>
@@ -77,12 +78,16 @@
                 </div>                
             </div>
         </div>
-
+        <div id="snackbar"></div>
+        <script type="text/javascript" src="js/SnackBar.js"></script>
         <script type="text/javascript">
-            function myAlert() {
-                if (request.getAttribute("NOTICE") !== null)
-                    alert(<%= (String) request.getAttribute("NOTICE")%>);
+        function showNotice() {
+            function showNotice() {
+                if (<%= request.getAttribute("NOTICE") != null%>) {
+                    showSnackBar('${requestScope.NOTICE}');
+                }
             }
+        }
         </script>
     </body>
 </html>

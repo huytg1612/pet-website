@@ -25,6 +25,7 @@ public class MainController extends HttpServlet {
     private static final String INSERT = "AdminInsertController";
     private static final String LOGOUT = "AdminLogoutController";
     private static final String UPDATE = "AdminUpdateController";
+    private static final String CHANGE_PASSWORD = "AdminChangePasswordController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,12 +52,13 @@ public class MainController extends HttpServlet {
                 url = EDIT;
             } else if (action.equals("Insert")) {
                 url = INSERT;
-            } else if(action.equals("Logout")){
+            } else if (action.equals("Logout")) {
                 url = LOGOUT;
-            } else if(action.equals("Update")){
+            } else if (action.equals("Update")) {
                 url = UPDATE;
-            }
-            else {
+            } else if (action.equals("changePassword")) {
+                url = CHANGE_PASSWORD;
+            } else {
                 request.setAttribute("ERROR", "This action is not supported");
             }
         } catch (Exception e) {

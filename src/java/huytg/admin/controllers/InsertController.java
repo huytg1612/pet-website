@@ -69,7 +69,7 @@ public class InsertController extends HttpServlet {
         } catch (Exception e) {
             log("Error at AdminInsertController: "+e.getMessage());
         } finally {
-            request.getRequestDispatcher("adminInsertAccessory.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/adminInsertAccessory.jsp").forward(request, response);
         }
     }
 

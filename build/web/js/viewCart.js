@@ -22,38 +22,11 @@ function removeItem(id, index) {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             $('#shopping-cart').load('accessory/viewCart.jsp #myTable');
-            
+
             showSnackBar(this.responseText);
         }
     };
     xhttp.open("POST", "CartMainController", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("action=Delete&txtAccessoryID=" + id);
-}
-
-function checkOut() {
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            $('#shopping-cart').load('accessory/viewCart.jsp #myTable');
-
-            var responseMSG = this.responseText;
-            var myModal = document.getElementById("myModal");
-            var notice = document.getElementById("myModal-notice");
-            var link = document.getElementById("myModal-link");
-
-            if (responseMSG === "Login") {
-                notice.innerHTML = "You need to login to check out";
-                myModal.style.display = "block";
-            }
-
-            if (responseMSG === "Success") {
-                showSnackBar(this.responseText);
-            }
-        }
-    };
-    xhttp.open("POST", "CartMainController", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("action=CheckOut");
 }
