@@ -22,6 +22,14 @@ public class InvoiceDTO implements Serializable{
         this.date = date;
         this.total = total;
     }
+
+    public InvoiceDTO(int id, String date, float total) {
+        this.id = id;
+        this.date = date;
+        this.total = total;
+    }
+    
+    
     
     public int getId() {
         return id;

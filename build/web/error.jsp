@@ -12,10 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% 
-            String error = (String)request.getAttribute("ERROR");
-        %>
-        <h1 style="color:red"><%= error %></h1>
+        <h1 style="color:red">${requestScope.ERROR}</h1>
         <a href="index.jsp">Go home now?</a>
     </body>
 </html>

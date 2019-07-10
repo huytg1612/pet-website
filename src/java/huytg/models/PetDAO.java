@@ -176,4 +176,23 @@ public class PetDAO implements Serializable {
         
         return check;
     }
+    
+    public int getCount() throws Exception{
+        int total = 0;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select COUNT(ID) as Total From tbl_Pet";
+            preStm = conn.prepareStatement(sql);
+            
+            rs = preStm.executeQuery();
+            if(rs.next()){
+                total = rs.getInt("Total");
+            }
+        } finally {
+            closeConnection();
+        }
+        
+        return total;
+    }
 }

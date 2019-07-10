@@ -5,8 +5,9 @@
  */
 package huytg.admin.controllers;
 
-import huytg.dtos.AccessoryDTO;
-import huytg.models.AccessoryDAO;
+import huytg.dtos.RegistrationDetailDTO;
+import huytg.dtos.RegistrationErrorObject;
+import huytg.models.RegistrationDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,10 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author SE130226
  */
 public class UpdateController extends HttpServlet {
-
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "AdminSearchController";
-
+    private static final String SUCCESS = "admin/adminProfile.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,49 +36,45 @@ public class UpdateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
 
+        boolean check = true;
         try {
-            String id = request.getParameter("txtAccessoryId");
-            String name = request.getParameter("txtAccessoryName");
-            float price = Float.parseFloat(request.getParameter("txtAccessoryPrice"));
-            int quantity = Integer.parseInt(request.getParameter("txtAccessoryQuantity"));
-            String types = request.getParameter("cboType");
-            String madeIn = request.getParameter("cboMadeIn");
-            String[] useFors = request.getParameterValues("cboMultiUseFor");
-            String txtStatus = request.getParameter("cboStatus");
-            String descrip = request.getParameter("txtAccessoryDescrip");
+            String username = request.getParameter("txtUsername");
+            String fName = request.getParameter("txtFirstName");
+            String lName = request.getParameter("txtLastName");
+            String address = request.getParameter("txtAddress");
+            String sex = request.getParameter("cboSex");
+            String dob = request.getParameter("txtDOB");
+            String about = request.getParameter("txtAbout");
+            String phone = request.getParameter("txtPhone");
 
-            String useFor = "";
-            int status = 0;
-            
-            for (String s : useFors) {
-                useFor += s + ",";
+            RegistrationDetailDTO dto = new RegistrationDetailDTO(username, fName, lName, address, sex, dob, about, phone);
+            RegistrationDetailDAO dao = new RegistrationDetailDAO();
+
+            RegistrationErrorObject errorObj = new RegistrationErrorObject();
+
+            if (fName.isEmpty()) {
+                errorObj.setfName("First name can't be blank");
+                check = false;
             }
-            
-            if(txtStatus.equals("Show")){
-                status = 0;
-            }else if(txtStatus.equals("Hidden")){
-                status = 1;
+            if (lName.isEmpty()) {
+                errorObj.setlName("Last name can't be blank");
+                check = false;
             }
 
-            int type = 0;
-            switch(types){
-                case"Collar": type = 1;break;
-                case"Clothes": type = 2;break;
-                case"Toys": type = 3;break;
-                case"Feeding": type = 4;break;
-                case"Bedding": type = 5;break;
-            }
-            
-            AccessoryDAO dao = new AccessoryDAO();
-            AccessoryDTO dto = new AccessoryDTO(id, name, useFor, madeIn, descrip, price, quantity, type, status);
-                        
-            System.out.println(dto.toString());
-            
-            if (dao.update(dto)) {
+            if (check) {
+                if (dao.update(dto)) {
+                    request.setAttribute("DTO_ReDe", dto);
+                    request.setAttribute("NOTICE", "Update successful");
+                    request.setAttribute("USERNAME", username);
+                    url = SUCCESS;
+                } else {
+                    request.setAttribute("ERROR", "Update failed");
+                }
+            }else{
+                request.setAttribute("INVALID", errorObj);
                 url = SUCCESS;
-            } else {
-                request.setAttribute("ERROR", "Update failed");
             }
+
         } catch (Exception e) {
             log("Error at AdminUpdateController: " + e.getMessage());
         } finally {

@@ -47,6 +47,7 @@ public class SearchTypeController extends HttpServlet {
             }
 
         } catch (Exception e) {
+            log("Error at AccessorySearchTypeController: "+e.getMessage());
         } finally {
             request.getRequestDispatcher("accessory/accessory.jsp").forward(request, response);
         }

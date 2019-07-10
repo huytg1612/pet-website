@@ -94,4 +94,24 @@ public class Accessory_InvoiceDAO implements Serializable {
 
         return list;
     }
+    
+    public int getNumberOfSold() throws Exception{
+        int total = 0;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select SUM(Quantity) as Total From tbl_Accessory_Invoice";
+            preStm = conn.prepareStatement(sql);
+            
+            rs = preStm.executeQuery();
+            if(rs.next()){
+                total = rs.getInt("Total");
+            }
+                   
+        } finally {
+            closeConnection();
+        }
+        
+        return total;
+    }
 }

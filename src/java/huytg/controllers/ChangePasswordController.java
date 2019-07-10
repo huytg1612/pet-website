@@ -52,6 +52,9 @@ public class ChangePasswordController extends HttpServlet {
             if (newPass.isEmpty()) {
                 errorObj.setPassword("Password can't be blank");
                 isValid = false;
+            }else if(newPass.length() < 6 || newPass.length() > 12 ){
+                errorObj.setPassword("Password must be from 6 to 12 chars");
+                isValid = false;
             }
             if (!confirm.equals(newPass)) {
                 errorObj.setConfirm("Confirm is not match");
@@ -75,7 +78,7 @@ public class ChangePasswordController extends HttpServlet {
             }
 
         } catch (Exception e) {
-            log("Error at ChangePasswordController: "+e.getMessage());
+            log("Error at AdminChangePasswordController: "+e.getMessage());
         } finally {
             request.getRequestDispatcher("user/changePassword.jsp").forward(request, response);
         }

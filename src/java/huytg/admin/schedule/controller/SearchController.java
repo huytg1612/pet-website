@@ -7,6 +7,7 @@ package huytg.admin.schedule.controller;
 
 import huytg.dtos.ServiceScheduleDTO;
 import huytg.models.ServiceScheduleDAO;
+import huytg.utils.GetDate;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -35,6 +36,10 @@ public class SearchController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String dateSearch = request.getParameter("txtSearch");
+            
+            if(dateSearch == null){
+                dateSearch = GetDate.getCurrentDate().toString();
+            }
             
             ServiceScheduleDAO dao = new ServiceScheduleDAO();
             List<ServiceScheduleDTO> list = dao.findByDate(dateSearch);

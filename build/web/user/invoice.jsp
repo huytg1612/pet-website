@@ -72,13 +72,13 @@
                     <div class="modal-dialog modal-dialog-centered" role="document" >
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Invoice ID: ${dtoInvoice.id}<br/>Date:${dtoInvoice.date}</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Invoice ID: ${dtoInvoice.id}<br/>Date:${requestScope.DTO_Invoice.date}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <c:set var="listInvoiceDetails" value="${requestScope.DTO_InvoiceDetails}"/>
+                                <c:set var="listInvoiceDetails" value="${requestScope.LIST_InvoiceDetails}"/>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -91,6 +91,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <c:set var="total" value="0" />
                                         <c:forEach var="dtoInvoiceDetail" items="${listInvoiceDetails}" varStatus="countNo">
                                             <tr>
                                                 <th scope="row">${countNo.count}</th>
@@ -100,12 +101,13 @@
                                                 <td>${dtoInvoiceDetail.quantity}</td>
                                                 <td>${dtoInvoiceDetail.quantity * dtoInvoiceDetail.accessoryPrice}</td>
                                             </tr>
+                                            <c:set var="total" value="${total + (dtoInvoiceDetail.accessoryPrice * dtoInvoiceDetail.quantity)}" />
                                         </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="modal-footer">
-                                <h5>Total:</h5>
+                                <h5>Total:${requestScope.DTO_Invoice.total}</h5>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -115,7 +117,7 @@
         </div>
         <script type="text/javascript">
             function popUpModal() {
-                if (<%= request.getAttribute("DTO_InvoiceDetails") != null%>)
+                if (<%= request.getAttribute("LIST_InvoiceDetails") != null%>)
                 {
                     $('#exampleModalCenter').modal('show');
                 }

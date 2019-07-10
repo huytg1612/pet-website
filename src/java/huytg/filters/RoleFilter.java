@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 public class RoleFilter implements Filter {
 
     private static final String CUSTOMER = "SystemLoadController";
-    private static final String ADMIN = "admin/admin.jsp";
+    private static final String ADMIN = "AdminRecordController";
     private static final String LOGIN = "login.jsp";
 
     private static final boolean debug = true;
@@ -114,12 +114,10 @@ public class RoleFilter implements Filter {
         int index = uri.lastIndexOf("/");
         String resource = uri.substring(index);
 
+        RegistrationDetailDTO dto = (RegistrationDetailDTO) session.getAttribute("USER");
         String role = (String) session.getAttribute("ROLE");
         String action = req.getParameter("action");
-
-        System.out.println("ROLE: " + role);
-        System.out.println("Action: " + action);
-
+        
         if (role == null) {
             if (action != null) {
                 if (!action.equals("Login") && !action.equals("Register")
@@ -133,8 +131,10 @@ public class RoleFilter implements Filter {
                 }
             }
         } else {
-            if (resource.contains("/index.jsp")) {
+            if (resource.equals("/index.jsp")) {
                 url = CUSTOMER;
+            }else if(resource.equals("/admin/admin.jsp")){
+                url = ADMIN;
             }
             else if (resource.contains("/login.jsp")) {
                 if (role.equals("customer")) {
@@ -146,11 +146,9 @@ public class RoleFilter implements Filter {
 
             //Case: admin forward to user controller or jsp
             if (resource.contains("/index.jsp") || resource.contains("/MainController")
-                    || resource.contains("/Accessory") || resource.contains("/Cart")) {
+                    || resource.contains("/Accessory") || resource.contains("/Cart") || resource.contains("/System") || resource.equals("/")) {
                 if (role.equals("admin")) {
                     url = ADMIN;
-                    System.out.println("123");
-                    System.out.println("456");
                 }
             }
 
@@ -162,7 +160,6 @@ public class RoleFilter implements Filter {
             }
         }
 
-        System.out.println(url);
 
         if (url != null) {
             req.getRequestDispatcher(url).forward(request, response);

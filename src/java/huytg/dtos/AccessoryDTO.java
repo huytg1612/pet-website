@@ -44,21 +44,23 @@ public class AccessoryDTO implements Serializable{
         this.status = status;
     }
     
-    public AccessoryDTO(String id, String name, String useFor, float price, int type) {
+    public AccessoryDTO(String id, String name, String useFor, float price, int type,int quantity) {
         this.id = id;
         this.name = name;
         this.useFor = useFor;
         this.price = price;
         this.type = type;
+        this.quantity = quantity;
     }
 
-    public AccessoryDTO(String id, String name, String useFor, float price, int type, int status) {
+    public AccessoryDTO(String id, String name, String useFor, float price, int type, int status,int quantity) {
         this.id = id;
         this.name = name;
         this.useFor = useFor;
         this.price = price;
         this.type = type;
         this.status = status;
+        this.quantity = quantity;
     }
 
     

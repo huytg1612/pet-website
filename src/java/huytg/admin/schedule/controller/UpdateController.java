@@ -33,11 +33,15 @@ public class UpdateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             int id = Integer.parseInt(request.getParameter("txtScheduleID"));
-            
-            ServiceScheduleDAO dao = new ServiceScheduleDAO();
-            dao.update(id);
+            int status = Integer.parseInt(request.getParameter("txtStatus"));
+
+            if (status == 1 || status == 2) {
+                ServiceScheduleDAO dao = new ServiceScheduleDAO();
+                dao.update(id, status);
+            }
+
         } catch (Exception e) {
-            log("Error at AdminScheduleUpdateController: "+e.getMessage());
+            log("Error at AdminScheduleUpdateController: " + e.getMessage());
         } finally {
             request.getRequestDispatcher("AdminScheduleSearchController").forward(request, response);
         }

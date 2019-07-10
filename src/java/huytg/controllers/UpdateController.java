@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UpdateController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "user/profile.jsp";
+    private static final String SUCCESS = "SearchController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,7 +43,6 @@ public class UpdateController extends HttpServlet {
 
         boolean check = true;
         try {
-            String username = request.getParameter("txtUsername");
             String fName = request.getParameter("txtFirstName");
             String lName = request.getParameter("txtLastName");
             String address = request.getParameter("txtAddress");
@@ -50,18 +50,19 @@ public class UpdateController extends HttpServlet {
             String dob = request.getParameter("txtDOB");
             String about = request.getParameter("txtAbout");
             String phone = request.getParameter("txtPhone");
-
+            
+            HttpSession session = request.getSession();
+            RegistrationDetailDTO dtoSession = (RegistrationDetailDTO) session.getAttribute("USER");
+            
+            String username = dtoSession.getUsername();
+            
             RegistrationDetailDTO dto = new RegistrationDetailDTO(username, fName, lName, address, sex, dob, about, phone);
             RegistrationDetailDAO dao = new RegistrationDetailDAO();
 
-            RegistrationErrorObject errorObj = new RegistrationErrorObject();
-
             if (fName.isEmpty()) {
-                errorObj.setfName("First name can't be blank");
                 check = false;
             }
             if (lName.isEmpty()) {
-                errorObj.setlName("Last name can't be blank");
                 check = false;
             }
 
@@ -75,7 +76,7 @@ public class UpdateController extends HttpServlet {
                     request.setAttribute("ERROR", "Update failed");
                 }
             }else{
-                request.setAttribute("INVALID", errorObj);
+                request.setAttribute("NOTICE", "First name and last name can not be blank");
                 url = SUCCESS;
             }
 

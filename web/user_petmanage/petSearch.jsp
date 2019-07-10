@@ -46,7 +46,7 @@
                                         <h5 class="card-title">${PetDTO.name}</h5>
                                         <p class="card-text">${PetDTO.descrip}</p>
                                         <a href="PetMainController?action=Edit&txtPetID=${PetDTO.id}" class="btn btn-primary">Edit</a>
-                                        <form action="PetMainController" method="POST">
+                                        <form action="PetMainController" method="POST" onsubmit="return confirm('Do yo want to delete?');">
                                             <button name="action" value="Delete" type="submit" class="btn btn-danger">Delete</button>
                                             <input type="hidden" name="txtPetID" value="${PetDTO.id}"/>
                                         </form>

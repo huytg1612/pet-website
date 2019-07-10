@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huytg.admin.controllers;
+package huytg.admin.accessory.controllers;
 
-import huytg.dtos.AccessoryDTO;
 import huytg.models.AccessoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SE130226
  */
-public class SearchController extends HttpServlet {
+public class DeleteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +31,19 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try {
-            String name = request.getParameter("txtAccessorySearch");
-                        
+            String id = request.getParameter("txtAccessoryID");
+            
             AccessoryDAO dao = new AccessoryDAO();
-            List<AccessoryDTO> list = dao.searchByLikeName(name,"admin");
-            
-            request.setAttribute("List_Accessory", list);
+            if(dao.delete(id)){
+                request.setAttribute("NOTICE", "Delete successful");
+            }else{
+                request.setAttribute("NOTICE", "Delete failed");
+            }
         } catch (Exception e) {
-            
-        } finally {
-            request.getRequestDispatcher("admin/adminAccessory.jsp").forward(request, response);
+            log("Error at AdminAccessoryDeleteController: "+e.getMessage());
+        } finally{
+            request.getRequestDispatcher("AdminAccessorySearchController").forward(request, response);
         }
     }
 

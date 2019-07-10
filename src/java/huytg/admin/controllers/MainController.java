@@ -18,14 +18,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MainController extends HttpServlet {
 
-    private static final String SEARCH = "AdminSearchController";
-    private static final String ERROR = "error.jsp";
-    private static final String DELETE = "AdminDeleteController";
-    private static final String EDIT = "AdminEditController";
-    private static final String INSERT = "AdminInsertController";
+    private static final String ADD = "AdminAddController";
     private static final String LOGOUT = "AdminLogoutController";
-    private static final String UPDATE = "AdminUpdateController";
+    private static final String PROFILE = "AdminProfileController";
     private static final String CHANGE_PASSWORD = "AdminChangePasswordController";
+    private static final String UPDATE = "AdminUpdateController";
+    private static final String ERROR = "error.jsp";
+    private static final String REGIS = "AdminRegisterController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,27 +38,26 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
 
+        String url = ERROR;
         try {
             String action = request.getParameter("action");
 
-            if (action.equals("Search")) {
-                url = SEARCH;
-            } else if (action.equals("Delete")) {
-                url = DELETE;
-            } else if (action.equals("Edit")) {
-                url = EDIT;
-            } else if (action.equals("Insert")) {
-                url = INSERT;
+            if (action.equals("Add")) {
+                url = ADD;
             } else if (action.equals("Logout")) {
                 url = LOGOUT;
+            } else if (action.equals("Edit")) {
+                url = PROFILE;
+            } else if (action.equals("ChangePassword")) {
+                url = CHANGE_PASSWORD;
             } else if (action.equals("Update")) {
                 url = UPDATE;
-            } else if (action.equals("changePassword")) {
-                url = CHANGE_PASSWORD;
-            } else {
-                request.setAttribute("ERROR", "This action is not supported");
+            } else if(action.equals("Register")){
+                url = REGIS;
+            }
+            else {
+                request.setAttribute("ERRRO", "This action is not supported");
             }
         } catch (Exception e) {
             log("Error at AdminMainController: " + e.getMessage());

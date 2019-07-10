@@ -34,8 +34,11 @@
     <body>
         <%
             List<AccessoryDTO> listAccess = (List) request.getAttribute("LIST_Accessory");
-
-            int panigation = (int) Math.ceil(listAccess.size() / 8);
+            
+            int panigation = 0;
+            if (listAccess != null) {
+                panigation = (int) Math.ceil(listAccess.size() / 8);
+            }
         %>
 
         <%@include file="../Components/NavBar.jsp" %>        
@@ -110,8 +113,14 @@
                             <p class="card-title">${dtoAccess.name}</p>
                             <h5 class="card-text">${dtoAccess.price}</h5>
                             <a href="AccessoryMainController?action=Search&txtAccessorySearch=${dtoAccess.id}" target="_blank" class="btn btn-primary">Details</a>
-                            <button class="btn btn-danger" name="action" value="Add to Cart" onclick="loadDoc('${dtoAccess.id}')">Add to Cart</button>
+                            <button class="btn btn-danger" name="action" value="Add to Cart" onclick="loadDoc('${dtoAccess.id}')" <c:if test="${dtoAccess.quantity <= 0}"> disabled=""</c:if>>
+                                Add to Cart</button>
                         </div>
+                        <c:if test="${dtoAccess.quantity <= 0}">
+                            <div class="accessory-notice">
+                                <h3>Out of stock</h3>
+                            </div>
+                        </c:if>
                     </div>                        
                 </c:forEach>
             </c:if>

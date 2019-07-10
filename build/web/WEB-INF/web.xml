@@ -41,28 +41,28 @@
         <servlet-class>huytg.controllers.LogoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminMainController</servlet-name>
-        <servlet-class>huytg.admin.controllers.MainController</servlet-class>
+        <servlet-name>AdminAccessoryMainController</servlet-name>
+        <servlet-class>huytg.admin.accessory.controllers.MainController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminSearchController</servlet-name>
-        <servlet-class>huytg.admin.controllers.SearchController</servlet-class>
+        <servlet-name>AdminAccessorySearchController</servlet-name>
+        <servlet-class>huytg.admin.accessory.controllers.SearchController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminUpdateController</servlet-name>
-        <servlet-class>huytg.admin.controllers.UpdateController</servlet-class>
+        <servlet-name>AdminAccessoryUpdateController</servlet-name>
+        <servlet-class>huytg.admin.accessory.controllers.UpdateController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminInsertController</servlet-name>
-        <servlet-class>huytg.admin.controllers.InsertController</servlet-class>
+        <servlet-name>AdminAccessoryInsertController</servlet-name>
+        <servlet-class>huytg.admin.accessory.controllers.InsertController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminLogoutController</servlet-name>
         <servlet-class>huytg.admin.controllers.LogoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminEditController</servlet-name>
-        <servlet-class>huytg.admin.controllers.EditController</servlet-class>
+        <servlet-name>AdminAccessoryEditController</servlet-name>
+        <servlet-class>huytg.admin.accessory.controllers.EditController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AccessoryLoadController</servlet-name>
@@ -204,6 +204,42 @@
         <servlet-name>AdminChangePasswordController</servlet-name>
         <servlet-class>huytg.admin.controllers.ChangePasswordController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminProfileController</servlet-name>
+        <servlet-class>huytg.admin.controllers.ProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminMainController</servlet-name>
+        <servlet-class>huytg.admin.controllers.MainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminUpdateController</servlet-name>
+        <servlet-class>huytg.admin.controllers.UpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminCustomerMainController</servlet-name>
+        <servlet-class>huytg.admin.customer.controllers.MainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminCustomerSearchController</servlet-name>
+        <servlet-class>huytg.admin.customer.controllers.SearchController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminCustomerStatusController</servlet-name>
+        <servlet-class>huytg.admin.customer.controllers.StatusController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminRegisterController</servlet-name>
+        <servlet-class>huytg.admin.controllers.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminRecordController</servlet-name>
+        <servlet-class>huytg.admin.controllers.RecordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAccessoryDeleteController</servlet-name>
+        <servlet-class>huytg.admin.accessory.controllers.DeleteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -237,28 +273,28 @@
         <url-pattern>/LogoutController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminMainController</servlet-name>
-        <url-pattern>/AdminMainController</url-pattern>
+        <servlet-name>AdminAccessoryMainController</servlet-name>
+        <url-pattern>/AdminAccessoryMainController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminSearchController</servlet-name>
-        <url-pattern>/AdminSearchController</url-pattern>
+        <servlet-name>AdminAccessorySearchController</servlet-name>
+        <url-pattern>/AdminAccessorySearchController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminUpdateController</servlet-name>
-        <url-pattern>/AdminUpdateController</url-pattern>
+        <servlet-name>AdminAccessoryUpdateController</servlet-name>
+        <url-pattern>/AdminAccessoryUpdateController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminInsertController</servlet-name>
-        <url-pattern>/AdminInsertController</url-pattern>
+        <servlet-name>AdminAccessoryInsertController</servlet-name>
+        <url-pattern>/AdminAccessoryInsertController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminLogoutController</servlet-name>
         <url-pattern>/AdminLogoutController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminEditController</servlet-name>
-        <url-pattern>/AdminEditController</url-pattern>
+        <servlet-name>AdminAccessoryEditController</servlet-name>
+        <url-pattern>/AdminAccessoryEditController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AccessoryLoadController</servlet-name>
@@ -399,6 +435,42 @@
     <servlet-mapping>
         <servlet-name>AdminChangePasswordController</servlet-name>
         <url-pattern>/AdminChangePasswordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminProfileController</servlet-name>
+        <url-pattern>/AdminProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminMainController</servlet-name>
+        <url-pattern>/AdminMainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUpdateController</servlet-name>
+        <url-pattern>/AdminUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminCustomerMainController</servlet-name>
+        <url-pattern>/AdminCustomerMainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminCustomerSearchController</servlet-name>
+        <url-pattern>/AdminCustomerSearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminCustomerStatusController</servlet-name>
+        <url-pattern>/AdminCustomerStatusController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminRegisterController</servlet-name>
+        <url-pattern>/AdminRegisterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminRecordController</servlet-name>
+        <url-pattern>/AdminRecordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAccessoryDeleteController</servlet-name>
+        <url-pattern>/AdminAccessoryDeleteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

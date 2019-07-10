@@ -7,8 +7,11 @@ package huytg.controllers;
 
 import huytg.dtos.AccessoryDTO;
 import huytg.dtos.Accessory_InvoiceDTO;
+import huytg.dtos.InvoiceDTO;
+import huytg.dtos.RegistrationDetailDTO;
 import huytg.models.AccessoryDAO;
 import huytg.models.Accessory_InvoiceDAO;
+import huytg.models.InvoiceDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,14 +44,20 @@ public class InvoiceDetailController extends HttpServlet {
         
         try {
             int id = Integer.parseInt(request.getParameter("txtInvoiceID"));
+            HttpSession session = request.getSession();
+            
+            RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO) session.getAttribute("USER");
+            String username = dtoReDe.getUsername();
             
             Accessory_InvoiceDAO dao = new Accessory_InvoiceDAO();
-            AccessoryDAO daoAccess = new AccessoryDAO();
+            InvoiceDAO daoInvoice = new InvoiceDAO();
+            
+            InvoiceDTO dto = daoInvoice.getByID(id,username);
             
             List<Accessory_InvoiceDTO> list = dao.getByInvoiceID(id);
             
-            System.out.println(list.size());
-            request.setAttribute("DTO_InvoiceDetails", list);
+            request.setAttribute("LIST_InvoiceDetails", list);
+            request.setAttribute("DTO_Invoice", dto);
         } catch (Exception e) {
             log("Error at InvoiceDetailController: "+e.getMessage());
         } finally {

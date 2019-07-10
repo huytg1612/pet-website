@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 8, 2019, 10:56:10 PM
+    Author     : SE130226
+*/
+.container-record{
+    width: 100%;
+    height: auto;
+    float: left;
+}
+.record{
+    width: 30%;
+    margin: 0 1.66%;
+    height: auto;
+    padding: 1%;
+    float: left;
+    background: white;
+    border-bottom: 1px solid #e1e1e1;   
+}
+.record img{
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 5%;
+}
+.record h5{
+    float: left;
+    margin: 0;
+}
+.record p{
+    margin: 0;
+}

@@ -33,8 +33,6 @@ public class RegistrationDetailDTO {
         this.lastName = lastName;
     }
 
-    
-    
     public String getUsername() {
         return username;
     }

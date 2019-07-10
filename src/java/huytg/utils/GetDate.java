@@ -5,6 +5,8 @@
  */
 package huytg.utils;
 
+import java.util.Calendar;
+
 /**
  *
  * @author SE130226
@@ -19,5 +21,17 @@ public class GetDate {
     public static java.sql.Timestamp getCurrentDateTime(){
         java.util.Date today = new java.util.Date();
         return new java.sql.Timestamp(today.getTime());
+    }
+    
+    public static int getYear(){
+        return Calendar.getInstance().get(Calendar.YEAR);
+    }
+    
+    public static int getMonth(){
+        return Calendar.getInstance().get(Calendar.MONTH);
+    }
+    
+    public static int getDate(){
+        return Calendar.getInstance().get(Calendar.DATE);
     }
 }

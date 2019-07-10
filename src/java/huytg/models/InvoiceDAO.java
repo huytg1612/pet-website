@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -89,5 +90,54 @@ public class InvoiceDAO implements Serializable{
         }
         
         return list;
+    }
+    
+    public InvoiceDTO getByID(int id,String username)throws Exception{
+        InvoiceDTO dto = null;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            
+            String sql = "Select Date,Total From tbl_Invoice Where ID = ? AND Username = ? ";
+            preStm =  conn.prepareStatement(sql);
+            
+            preStm.setInt(1, id);
+            preStm.setString(2, username);
+            
+            rs = preStm.executeQuery();
+            
+            if(rs.next()){
+                String date = rs.getString("Date");
+                float total = rs.getFloat("Total");
+                
+                dto = new InvoiceDTO(id, date, total);
+            }
+        } finally {
+            closeConnection();
+        }
+        
+        return dto;
+    }
+    
+    public float getRevenueByMonthAndYear(int month,int year) throws Exception{
+        float revenue = 0;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select SUM(Total) as Total From tbl_Invoice Where MONTH(Date) = ? AND YEAR(Date) = ?";
+            preStm = conn.prepareStatement(sql);
+            
+            preStm.setInt(1, month);
+            preStm.setInt(2, year);
+            
+            rs = preStm.executeQuery();
+            if(rs.next()){
+                revenue = rs.getFloat("Total");
+            }
+        } finally {
+            closeConnection();
+        }
+        
+        return revenue;
     }
 }

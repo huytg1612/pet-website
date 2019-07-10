@@ -56,9 +56,15 @@ public class RegisterController extends HttpServlet {
             if (username.isEmpty()) {
                 errorObj.setUsername("Username can't be blank");
                 check = false;
+            }else if(username.length() < 6 || username.length() > 12){
+                errorObj.setUsername("Username must be from 6 to 12 chars");
+                check = false;
             }
             if (password.isEmpty()) {
                 errorObj.setPassword("Password can't be blank");
+                check = false;
+            }else if(password.length() < 6 || password.length() > 12){
+                errorObj.setPassword("Password must be from 6 to 12 chars");
                 check = false;
             }
             if (fName.isEmpty()) {

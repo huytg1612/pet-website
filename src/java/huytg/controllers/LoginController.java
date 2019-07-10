@@ -24,9 +24,10 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginController extends HttpServlet {
 
-    private static final String ERROR = "login.jsp";
+    private static final String INVALID = "login.jsp";
+    private static final String ERROR = "error.jsp";
     private static final String USER = "SystemLoadController";
-    private static final String ADMIN = "admin/admin.jsp";
+    private static final String ADMIN = "AdminRecordController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +41,7 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = INVALID;
 
         try {
             String username = request.getParameter("txtUsername");
@@ -50,23 +51,31 @@ public class LoginController extends HttpServlet {
             String role = dao.checkLogin(username, password);
 
             HttpSession session = request.getSession();
-            
+
             if (!role.equals("failed")) {
-                if (role.equals("admin")) {
-                    url = ADMIN;
-                }else if(role.equals("customer")){
-                    url = USER;
+                RegistrationDTO dto = dao.searchByPK(username);
+                if (dto.getStatus() == 1) {
+                    url = ERROR;
+                    request.setAttribute("ERROR", "Your account have been banned!");
+                } else {
+                    if (role.equals("admin")) {
+                        url = ADMIN;
+                    } else if (role.equals("customer")) {
+                        url = USER;
+                    }
+
+                    RegistrationDetailDAO daoReDe = new RegistrationDetailDAO();
+                    RegistrationDetailDTO dtoReDe = daoReDe.searchByPK(username);
+                    
+                    RegistrationDetailDTO dtoSession = new RegistrationDetailDTO(dtoReDe.getUsername(), dtoReDe.getFirstName(), dtoReDe.getLastName());
+                    session.setAttribute("USER", dtoSession);
+                    session.setAttribute("ROLE", role);
                 }
-                
-                RegistrationDetailDAO daoReDe = new RegistrationDetailDAO();
-                RegistrationDetailDTO dtoReDe = daoReDe.searchByPK(username);
-                
-                session.setAttribute("USER", new RegistrationDetailDTO(dtoReDe.getUsername(), dtoReDe.getFirstName(), dtoReDe.getLastName()));
-                session.setAttribute("ROLE", role);
+
             } else {
                 RegistrationErrorObject errorObj = new RegistrationErrorObject();
                 errorObj.setLogin("Invalid username or password");
-                
+
                 request.setAttribute("INVALID_Regis", errorObj);
             }
         } catch (Exception e) {

@@ -37,6 +37,14 @@ public class RegistrationDTO {
         this.password = password;
         this.role = role;
     }
+
+    public RegistrationDTO(String username, String role, int status) {
+        this.username = username;
+        this.role = role;
+        this.status = status;
+    }
+    
+    
     
     public RegistrationDTO(String username, String role) {
         this.username = username;

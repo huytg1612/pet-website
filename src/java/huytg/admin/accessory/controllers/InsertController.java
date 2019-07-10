@@ -1,9 +1,10 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huytg.admin.controllers;
+package huytg.admin.accessory.controllers;
 
 import huytg.dtos.AccessoryDTO;
 import huytg.models.AccessoryDAO;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author SE130226
  */
-public class EditController extends HttpServlet {
-
+public class InsertController extends HttpServlet {
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,17 +34,42 @@ public class EditController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String id = request.getParameter("txtAccessoryID");
+            String id = request.getParameter("txtAccessoryId");
+            String name = request.getParameter("txtAccessoryName");
+            float price = Float.parseFloat(request.getParameter("txtAccessoryPrice"));
+            int quantity = Integer.parseInt(request.getParameter("txtAccessoryQuantity"));
+            String types = request.getParameter("cboType");
+            String madeIn = request.getParameter("cboMadeIn");
+            String[] useFors = request.getParameterValues("cboMultiUseFor");
+            String descrip = request.getParameter("txtAccessoryDescrip");
+            String image = "/images/Accessory/"+request.getParameter("fileImage");
+            
+            String useFor = "";
+            for(String s : useFors){
+                useFor += s+",";
+            }
+            
+            int type = 0;
+            switch(types){
+                case"Collar": type = 1;break;
+                case"Clothes": type = 2;break;
+                case"Toys": type = 3;break;
+                case"Feeding": type = 4;break;
+                case"Bedding": type = 5;break;
+            }
             
             AccessoryDAO dao = new AccessoryDAO();
-            AccessoryDTO dto = dao.searchByPK(id);
+            AccessoryDTO dto = new AccessoryDTO(id, name, useFor, madeIn, descrip, price, quantity, type, 0);
+            dto.setImage(image);
             
-            request.setAttribute("DTO_Accessory", dto);
+            if(dao.insert(dto)){
+                request.setAttribute("NOTICE", "Insert successful");
+            }
             
         } catch (Exception e) {
-            log("Error at AdminEditController: "+e.getMessage());
+            log("Error at AdminAccessoryInsertController: "+e.getMessage());
         } finally {
-            request.getRequestDispatcher("admin/adminUpdateAccessory.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/adminInsertAccessory.jsp").forward(request, response);
         }
     }
 

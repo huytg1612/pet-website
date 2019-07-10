@@ -61,6 +61,9 @@
                                     <c:if test="${dtoSchedule.status == 1}">
                                         <span class="badge badge-success">Done</span>
                                     </c:if>
+                                    <c:if test="${dtoSchedule.status == 2}">
+                                        <span class="badge badge-danger">Canceled</span>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

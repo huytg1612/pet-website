@@ -176,15 +176,16 @@ public class ServiceScheduleDAO implements Serializable {
         return list;
     }
     
-    public boolean update(int id) throws Exception{
+    public boolean update(int id,int status) throws Exception{
         boolean check =false;
         
         try {
             conn = MyConnection.getMyConnection();
-            String sql = "Update tbl_ServiceSchedule Set Status = 1 Where ID = ?";
+            String sql = "Update tbl_ServiceSchedule Set Status = ? Where ID = ?";
             preStm = conn.prepareStatement(sql);
             
-            preStm.setInt(1, id);
+            preStm.setInt(1, status);
+            preStm.setInt(2, id);
             
             check = preStm.executeUpdate() > 0;
         } finally {
@@ -192,5 +193,46 @@ public class ServiceScheduleDAO implements Serializable {
         }
         
         return check;
+    }
+    
+    public float getRevenueByMonthAndYear(int month,int year) throws Exception{
+        float revenue = 0;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select SUM(Total) as total From tbl_ServiceSchedule Where MONTH(Date) = ? AND YEAR(Date) = ?";
+            preStm = conn.prepareStatement(sql);
+            
+            preStm.setInt(1, month);
+            preStm.setInt(2, year);
+            
+            rs = preStm.executeQuery();
+            if(rs.next()){
+                revenue = rs.getFloat("Total");
+            }
+        } finally {
+            closeConnection();
+        }
+        
+        return revenue;
+    }
+    
+    public int getCount() throws Exception{
+        int total = 0;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select COUNT(ServiceID) as Total From tbl_ServiceSchedule";
+            preStm = conn.prepareStatement(sql);
+            
+            rs = preStm.executeQuery();
+            if(rs.next()){
+                total = rs.getInt("Total");
+            }
+        } finally {
+            closeConnection();
+        }
+        
+        return total;
     }
 }

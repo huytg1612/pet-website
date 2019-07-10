@@ -93,16 +93,16 @@ public class RegistrationDAO implements Serializable {
 
         try {
             conn = MyConnection.getMyConnection();
-            String sql = "Select Password,Role From tbl_Registration Where Username = ?";
+            String sql = "Select Role,Status From tbl_Registration Where Username = ?";
             preStm = conn.prepareStatement(sql);
             preStm.setString(1, username);
             rs = preStm.executeQuery();
 
             if (rs.next()) {
-                String password = rs.getString("Password");
+                int status = rs.getInt("Status");
                 String role = rs.getString("Role");
 
-                dto = new RegistrationDTO(username, password, role);
+                dto = new RegistrationDTO(username, role, status);
             }
 
         } finally {
@@ -114,14 +114,14 @@ public class RegistrationDAO implements Serializable {
 
     public String getPassword(String username) throws Exception {
         String password = null;
-        
+
         try {
             conn = MyConnection.getMyConnection();
             String sql = "Select Password From tbl_Registration Where Username = ?";
-            
+
             preStm = conn.prepareStatement(sql);
             preStm.setString(1, username);
-            
+
             rs = preStm.executeQuery();
             if (rs.next()) {
                 password = rs.getString("Password");
@@ -133,23 +133,63 @@ public class RegistrationDAO implements Serializable {
 
         return password;
     }
-    
-    public boolean changePassword(String username,String password) throws Exception{
+
+    public boolean changePassword(String username, String password) throws Exception {
         boolean check = false;
-        
+
         try {
             conn = MyConnection.getMyConnection();
             String sql = "Update tbl_Registration Set Password = ? Where Username = ?";
             preStm = conn.prepareStatement(sql);
-            
+
             preStm.setString(1, password);
+            preStm.setString(2, username);
+
+            check = preStm.executeUpdate() > 0;
+        } finally {
+            closeConnection();
+        }
+
+        return check;
+    }
+
+    public boolean updateStatus(String username, int status) throws Exception {
+        boolean check = false;
+
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Update tbl_Registration Set Status = ? Where Username = ?";
+            preStm = conn.prepareStatement(sql);
+            
+            preStm.setInt(1, status);
             preStm.setString(2, username);
             
             check = preStm.executeUpdate() > 0;
         } finally {
             closeConnection();
         }
-        
+
         return check;
+    }
+    
+    public int getNumberOfMembersByRole(String role) throws Exception{
+        int total = 0;
+        
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select COUNT(Username) as Total From tbl_Registration Where Role = ?";
+            preStm = conn.prepareStatement(sql);
+            
+            preStm.setString(1, role);
+            rs = preStm.executeQuery();
+            
+            if(rs.next()){
+                total = rs.getInt("Total");
+            }
+        } finally {
+            closeConnection();
+        }
+        
+        return total;
     }
 }
