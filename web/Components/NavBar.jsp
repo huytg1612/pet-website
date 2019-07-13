@@ -5,6 +5,14 @@
     RegistrationDetailDTO dto = (RegistrationDetailDTO) session.getAttribute("USER");
 %>
 
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+
+%>
+
 <c:url value="AccessoryMainController" var="url_Accessory">
     <c:param name="action" value="Load"/>
     <c:param name="txtAccessorySearch" value="" />
@@ -20,7 +28,7 @@
 </c:url>
 
 <div id="nav-bar-container">
-    <a href="index.jsp" id="nav-bar-logo"><img src="<%= request.getContextPath() %>/images/logo.jpg" width="160px" height="42px"/></a>
+    <a href="index.jsp" id="nav-bar-logo"><img src="<%= request.getContextPath()%>/images/logo.jpg" width="160px" height="42px"/></a>
     <div id="nav-bar-links">
         <a href="index.jsp" class="nav-bar-link">Home</a>
         <a href="#" class="nav-bar-link">News</a>

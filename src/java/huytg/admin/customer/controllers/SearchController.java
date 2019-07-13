@@ -36,7 +36,7 @@ public class SearchController extends HttpServlet {
             String username = request.getParameter("txtSearch");
             
             RegistrationDAO dao = new RegistrationDAO();
-            RegistrationDTO dto = dao.searchByPK(username);
+            RegistrationDTO dto = dao.searchByPKCus(username);
             
             request.setAttribute("DTO_Regis", dto);
         } catch (Exception e) {

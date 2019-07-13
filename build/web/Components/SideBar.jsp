@@ -4,6 +4,13 @@
     Author     : SE130226
 --%>
 <%@page import="huytg.dtos.RegistrationDetailDTO"%>
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+
+%>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <style>
@@ -15,8 +22,7 @@
         }
     </style>
 
-    <%
-        RegistrationDetailDTO user = (RegistrationDetailDTO) session.getAttribute("USER");
+    <%        RegistrationDetailDTO user = (RegistrationDetailDTO) session.getAttribute("USER");
         if (user == null) {
             request.setAttribute("ERROR", "Session time out");
             request.getRequestDispatcher("error.jsp").forward(request, response);

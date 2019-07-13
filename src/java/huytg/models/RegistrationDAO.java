@@ -88,6 +88,33 @@ public class RegistrationDAO implements Serializable {
         return check;
     }
 
+    public RegistrationDTO searchByPKCus(String username) throws Exception {
+        RegistrationDTO dto = null;
+
+        try {
+            conn = MyConnection.getMyConnection();
+            String sql = "Select Role,Status From tbl_Registration Where Username = ? AND Role = ?";
+            preStm = conn.prepareStatement(sql);
+            
+            preStm.setString(1, username);
+            preStm.setString(2, "customer");
+            
+            rs = preStm.executeQuery();
+
+            if (rs.next()) {
+                int status = rs.getInt("Status");
+                String role = rs.getString("Role");
+
+                dto = new RegistrationDTO(username, role, status);
+            }
+
+        } finally {
+            closeConnection();
+        }
+
+        return dto;
+    }
+    
     public RegistrationDTO searchByPK(String username) throws Exception {
         RegistrationDTO dto = null;
 

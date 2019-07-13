@@ -47,7 +47,7 @@
 
             <div class="table-container">
                 <c:set var="dtoRegis" value="${requestScope.DTO_Regis}"/>
-                <c:if test="${dtoRegis != null}">
+                <c:if test="${dtoRegis != null}" var="Found">
                     <table class="table">
                         <thead>
                             <tr>
@@ -82,6 +82,9 @@
                             </tr>
                         </tbody>
                     </table>                    
+                </c:if>
+                <c:if test="${!Found}">
+                    <h2 style="text-align: center">No customer found</h2>
                 </c:if>
             </div>
         </div>
