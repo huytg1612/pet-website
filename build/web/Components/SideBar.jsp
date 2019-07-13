@@ -35,9 +35,6 @@
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Welcome, <strong><%= user.getFirstName() + " " + user.getLastName()%></strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
         </div>
     </div>
     <hr>
@@ -45,8 +42,7 @@
         <h5>Dashboard</h5>
     </div>
     <div class="w3-bar-block">
-        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
+        <a href="AdminRecordController" class="w3-bar-item w3-button w3-padding">Overview</a>
         <a href="AdminForwardController?page=adminRegister.jsp" class="w3-bar-item w3-button w3-padding">Add a new admin</a>
         <a href="AdminMainController?action=Edit" class="w3-bar-item w3-button w3-padding">Profile</a>
         <a href="AdminForwardController?page=adminChangePassword.jsp" class="w3-bar-item w3-button w3-padding">Change password</a>
@@ -57,7 +53,7 @@
             <a href="AdminForwardController?page=adminInsertAccessory.jsp" class="w3-bar-item w3-button w3-padding">Insert Accessory</a>
         </div>
 
-        <a href="AdminForwardController?page=adminSchedule.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  View Schedule</a>
+        <a href="AdminForwardController?page=adminSchedule.jsp" class="w3-bar-item w3-button w3-padding">View Schedule</a>
         <form action="AdminMainController" method="POST">
             <button type="submit" name="action" value="Logout" class="btn btn-outline-danger">Log out</button>
         </form>

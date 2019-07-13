@@ -40,6 +40,7 @@ public class LoadController extends HttpServlet {
             List<AccessoryDTO> list = dao.searchByLikeName(search, "customer");
             
             request.setAttribute("LIST_Accessory", list);
+            
         } catch (Exception e) {
             log("Error at AccessoryLoadController: "+e.getMessage());
         } finally {

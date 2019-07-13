@@ -22,6 +22,11 @@
         <link rel="stylesheet" href="css/SnackBar.css">
 
         <title>JSP Page</title>
+        <style>
+            .invalid{
+                color: red;
+            }
+        </style>
     </head>
     <body class="w3-light-grey" onload="onLoad()">
         <%@include file="../Components/SideBar.jsp" %>

@@ -29,9 +29,6 @@
         </div>
         <div class="w3-col s8 w3-bar">
             <span><strong><%= user.getFirstName() + " " + user.getLastName()%></strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
         </div>
     </div>
     <hr>
@@ -39,20 +36,16 @@
         <h5>Dashboard</h5>
     </div>
     <div class="w3-bar-block">
-        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="MainController?action=Edit" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Profile</a>
-        <a href="ForwardController?page=change_password" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Change password</a>
+        <a href="MainController?action=Edit" class="w3-bar-item w3-button w3-padding">Profile</a>
+        <a href="ForwardController?page=change_password" class="w3-bar-item w3-button w3-padding">Change password</a>
         <p class="w3-bar-item w3-button w3-padding" style="margin: 0" onclick="myFunction('pet-list-links')">Your pet</p>
         <div id="pet-list-links" class="list-links-style" style="display: none">
             <a href="PetMainController?action=Load" class="w3-bar-item w3-button w3-padding">View pet</a>
             <a href="PetMainController?action=Forward" class="w3-bar-item w3-button w3-padding">Create a new pet</a>
         </div>
 
-        <a href="MainController?action=ViewInvoice" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Your invoice</a>
-        <a href="ScheduleMainController?action=Load" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Your schedule</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+        <a href="MainController?action=ViewInvoice" class="w3-bar-item w3-button w3-padding">Your invoice</a>
+        <a href="ScheduleMainController?action=Load" class="w3-bar-item w3-button w3-padding">Your schedule</a>
     </div>
 
     <script type="text/javascript" src="js/SideBar.js"></script>

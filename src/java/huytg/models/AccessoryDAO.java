@@ -41,7 +41,7 @@ public class AccessoryDAO implements Serializable {
 
         AccessoryDTO dto = null;
 
-        String id = null, accesName = null, useFor = null;
+        String id, accesName, useFor,madeIn,description;
         float price = 0;
         int type = 0,quantity;
 
@@ -50,9 +50,9 @@ public class AccessoryDAO implements Serializable {
             String sql = null;
 
             if (displayFor.equals("admin")) {
-                sql = "Select ID,Name,UseFor,Price,Type,Status,Quantity From tbl_Accessory Where Name like ?";
+                sql = "Select ID,Name,Price,Quantity,UseFor,Type,MadeIn,Description,Image,Status From tbl_Accessory Where Name like ?";
             } else if (displayFor.equals("customer")) {
-                sql = "Select ID,Name,UseFor,Price,Type,Image,Quantity From tbl_Accessory Where Name like ? and Status = 0";
+                sql = "Select ID,Name,Price,Quantity,UseFor,Type,MadeIn,Description,Image From tbl_Accessory Where Name like ? and Status = 0";
             }
             preStm = conn.prepareStatement(sql);
 
@@ -68,9 +68,11 @@ public class AccessoryDAO implements Serializable {
                 price = rs.getFloat("Price");
                 type = rs.getInt("Type");
                 quantity = rs.getInt("Quantity");
+                madeIn = rs.getString("MadeIn");
+                description = rs.getString("Description");
 
                 if (displayFor.equals("customer")) {
-                    dto = new AccessoryDTO(id, accesName, useFor, price, type,quantity);
+                    dto = new AccessoryDTO(id, accesName, useFor, madeIn, description, price, quantity, type,0);
                     dto.setImage(rs.getString("Image"));
                 } else if (displayFor.equals("admin")) {
                     dto = new AccessoryDTO(id, accesName, useFor, price, type, rs.getInt("Status"),quantity);
@@ -192,14 +194,14 @@ public class AccessoryDAO implements Serializable {
     public List<AccessoryDTO> findByType(String typeSearch) throws Exception{
         List<AccessoryDTO> list = null;
         
-        String id,name,image,useFor;
+        String id,name,image,useFor,descrip,madeIn;
         int price,type,quantity;
         
         AccessoryDTO dto = null;
         
         try {
             conn = MyConnection.getMyConnection();
-            String sql = "Select ID,Name,UseFor,Price,Type,Image,Quantity From tbl_Accessory Where Type in "
+            String sql = "Select ID,Name,Price,Quantity,UseFor,Type,MadeIn,Description,Image From tbl_Accessory Where Type in "
                     + "(Select ID From tbl_AccessoryType Where Type = ?) AND Status = 0";
             preStm = conn.prepareStatement(sql);
             
@@ -215,8 +217,10 @@ public class AccessoryDAO implements Serializable {
                 type = rs.getInt("Type");
                 useFor = rs.getString("UseFor");
                 quantity = rs.getInt("Quantity");
+                madeIn = rs.getString("MadeIn");
+                descrip = rs.getString("Description");
                 
-                dto = new AccessoryDTO(id, name, useFor, price, type,quantity);
+                dto = new AccessoryDTO(id, name, useFor, madeIn, descrip, price, quantity, type, 0);
                 dto.setImage(image);
                 
                 list.add(dto);

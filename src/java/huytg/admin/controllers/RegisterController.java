@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RegisterController extends HttpServlet {
     private static final String ERROR = "admin/adminRegister.jsp";
-    private static final String SUCCESS = "admin/admin.jsp";
+    private static final String SUCCESS = "AdminRecordController";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

@@ -117,26 +117,40 @@ public class RoleFilter implements Filter {
         RegistrationDetailDTO dto = (RegistrationDetailDTO) session.getAttribute("USER");
         String role = (String) session.getAttribute("ROLE");
         String action = req.getParameter("action");
+
+        System.out.println("RS: "+resource);
         
-        if (role == null) {
-            if (action != null) {
-                if (!action.equals("Login") && !action.equals("Register")
-                        && !resource.contains("/Accessory") && !action.equals("CheckOut") && !resource.contains("/Cart")
-                        && !resource.contains("/Service")) {
-                    url = LOGIN;
-                }
+        if(action == null){
+            action = "";
+        }
+        
+        if(uri.contains("/user/")||uri.contains("/admin/")||uri.contains("/service/")||uri.contains("/user_petmanage/")){
+            if(role == null){
+                url = CUSTOMER;
+            }else if(role.equals("customer")){
+                url = CUSTOMER;
+            }else if(role.equals("admin")){
+                url = ADMIN;
+            }
+        }
+        
+        if (role == null){
+            if (resource.contains("CheckOut") || resource.contains("Delete") || resource.contains("Update")
+                    || resource.contains("Edit") || resource.contains("/Admin") || resource.contains("Profile")
+                    || action.equals("CheckOut") || resource.contains("/Pet") || resource.contains("/Schedule")
+                    || resource.contains("/Search") || resource.contains("/Invoice")) {
+                url = LOGIN;
             } else {
-                if (resource.contains("/index.jsp")) {
+                if (resource.equals("/index.jsp")) {
                     url = CUSTOMER;
                 }
             }
         } else {
-            if (resource.equals("/index.jsp")) {
+            if (resource.equals("/index.jsp") && role.equals("customer")) {
                 url = CUSTOMER;
-            }else if(resource.equals("/admin/admin.jsp")){
+            } else if (resource.equals("/admin/admin.jsp") && role.equals("admin")) {
                 url = ADMIN;
-            }
-            else if (resource.contains("/login.jsp")) {
+            } else if (resource.equals("/login.jsp")) {
                 if (role.equals("customer")) {
                     url = CUSTOMER;
                 } else if (role.equals("admin")) {
@@ -146,7 +160,8 @@ public class RoleFilter implements Filter {
 
             //Case: admin forward to user controller or jsp
             if (resource.contains("/index.jsp") || resource.contains("/MainController")
-                    || resource.contains("/Accessory") || resource.contains("/Cart") || resource.contains("/System") || resource.equals("/")) {
+                    || resource.contains("/Accessory") || resource.contains("/Cart") || resource.contains("/System") || resource.equals("/")
+                    || resource.contains("/Schedule") || resource.contains("/Service") || resource.contains("/Invoice")) {
                 if (role.equals("admin")) {
                     url = ADMIN;
                 }
@@ -160,11 +175,11 @@ public class RoleFilter implements Filter {
             }
         }
 
-
         if (url != null) {
             req.getRequestDispatcher(url).forward(request, response);
 
         } else {
+            System.out.println("123");
             chain.doFilter(request, response);
 
         }

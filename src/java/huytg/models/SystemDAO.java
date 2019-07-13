@@ -41,34 +41,36 @@ public class SystemDAO implements Serializable {
 
         AccessoryDTO dto;
 
-        String id, name;
-        int quantity;
+        String id, name,image,descrip,madeIn,useFor;
+        int quantity,type;
         float price;
 
         try {
             conn = MyConnection.getMyConnection();
-            String sql = "SELECT TOP 10 AccessoryID,SUM(Quantity) as Sold,\n"
-                    + "(Select Name From tbl_Accessory Where ID = AccessoryID) as Name,\n"
-                    + "(Select Price From tbl_Accessory Where ID = AccessoryID) as Price,\n"
-                    + "(Select Quantity From tbl_Accessory Where ID = AccessoryID) as Quantity,\n"
-                    + "(Select Image From tbl_Accessory Where ID = AccessoryID) as Image\n"
-                    + "FROM tbl_Accessory_Invoice\n"
-                    + "GROUP BY AccessoryID\n"
+            String sql = "SELECT TOP 10 A.ID,A.Name,A.Price,A.Quantity,A.Description,A.Image,A.MadeIn,A.Type,A.UseFor, SUM(I.Quantity) as Sold\n"
+                    + "From tbl_Accessory_Invoice I,tbl_Accessory A\n"
+                    + "Where I.AccessoryID = A.ID AND A.Status = 0\n"
+                    + "GROUP BY A.ID,A.Name,A.Price,A.Quantity,A.Description,A.Image,A.MadeIn,A.Type,A.UseFor\n"
                     + "ORDER BY Sold DESC";
             
             preStm = conn.prepareStatement(sql);
             rs = preStm.executeQuery();
-            
+
             list = new ArrayList<>();
-            while(rs.next()){
-                id = rs.getString("AccessoryID");
+            while (rs.next()) {
+                id = rs.getString("ID");
                 name = rs.getString("Name");
                 price = rs.getFloat("Price");
                 quantity = rs.getInt("Quantity");
-                
-                dto = new AccessoryDTO(id, name, quantity, price);
-                dto.setImage(rs.getString("Image"));
-                
+                image = rs.getString("Image");
+                descrip = rs.getString("Description");
+                madeIn = rs.getString("MadeIn");
+                useFor = rs.getString("UseFor");
+                type = rs.getInt("Type");
+
+                dto = new AccessoryDTO(id, name, useFor, madeIn, descrip, price, quantity, type, 0);
+                dto.setImage(image);
+
                 list.add(dto);
             }
         } finally {

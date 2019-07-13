@@ -41,12 +41,14 @@ public class DeleteController extends HttpServlet {
 
             if (cart != null) {
                 cart.delete(id);
-                responseMsg = "Delete successful";
+                
+                session.setAttribute("CART", cart);
+                request.setAttribute("NOTICE", "Delete successful");
             }
         } catch (Exception e) {
-
+            log("Error at CartDeleteController: "+e.getMessage());
         } finally {
-            response.getWriter().write(responseMsg);
+            request.getRequestDispatcher("CartViewController").forward(request, response);
         }
     }
 

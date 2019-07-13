@@ -34,7 +34,7 @@
     <body>
         <%
             List<AccessoryDTO> listAccess = (List) request.getAttribute("LIST_Accessory");
-            
+
             int panigation = 0;
             if (listAccess != null) {
                 panigation = (int) Math.ceil(listAccess.size() / 8);
@@ -100,7 +100,7 @@
         <div id="container-right">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="txtAccessorySearch">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="txtAccessorySearch" required="">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="action" value="Load">Search</button>
                 </form>
             </nav>
@@ -112,10 +112,42 @@
                         <div class="card-body">
                             <p class="card-title">${dtoAccess.name}</p>
                             <h5 class="card-text">${dtoAccess.price}</h5>
-                            <a href="AccessoryMainController?action=Search&txtAccessorySearch=${dtoAccess.id}" target="_blank" class="btn btn-primary">Details</a>
-                            <button class="btn btn-danger" name="action" value="Add to Cart" onclick="loadDoc('${dtoAccess.id}')" <c:if test="${dtoAccess.quantity <= 0}"> disabled=""</c:if>>
-                                Add to Cart</button>
-                        </div>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal${theCount.index}">
+                                Detail
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal${theCount.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Accessory: ${dtoAccess.id}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="width: 100%; height: auto;">
+                                                <img src="<%= request.getContextPath() %>${dtoAccess.image}" width="400px" height="350px" style="margin: 0 auto;display: block"/>
+                                            </div>
+                                            <p>Name: ${dtoAccess.name}</p>
+                                            <p>Price: ${dtoAccess.price}</p>
+                                            <p>Made in: ${dtoAccess.getMadeIn()}</p>
+                                            <p>Use for: ${dtoAccess.getUseFor()}</p>
+                                            <p>Description: ${dtoAcces.getDescription()}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-danger" name="action" value="Add to Cart" onclick="loadDoc('${dtoAccess.id}')" <c:if test="${dtoAccess.quantity <= 0}"> disabled=""</c:if>>
+                                                    Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-danger" name="action" value="Add to Cart" onclick="loadDoc('${dtoAccess.id}')" <c:if test="${dtoAccess.quantity <= 0}"> disabled=""</c:if>>
+                                    Add to Cart</button>
+                            </div>
                         <c:if test="${dtoAccess.quantity <= 0}">
                             <div class="accessory-notice">
                                 <h3>Out of stock</h3>

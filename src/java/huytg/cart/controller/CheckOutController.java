@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * @author SE130226
  */
 public class CheckOutController extends HttpServlet {
-    private static final String SUCCESS = "index.jsp";
+    private static final String SUCCESS = "SystemLoadController";
     private static final String FAIL = "accessory/viewCart.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

@@ -37,8 +37,6 @@ public class SearchController extends HttpServlet {
             AccessoryDAO dao = new AccessoryDAO();
             AccessoryDTO dto = dao.searchByPK(id);
             
-            System.out.println(dto.toString());
-            
             request.setAttribute("DTO_Accessory", dto);
         } catch (Exception e) {
             log("Error at AccessorySearchController: "+e.getMessage());

@@ -29,6 +29,11 @@
         <link rel="stylesheet" type="text/css" href="css/SnackBar.css">
 
         <title>JSP Page</title>
+        <style>
+            .error-notice{
+                color: red;
+            }
+        </style>
     </head>
     <body onload="myAlert()" id="body-style">
         <%@include file="../Components/NavBar.jsp" %>

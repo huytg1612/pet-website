@@ -19,10 +19,15 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        
+
         <link rel="stylesheet" href="css/SnackBar.css">
 
         <title>JSP Page</title>
+        <style>
+            .invalid{
+                color: red;
+            }
+        </style>
     </head>
     <body class="w3-light-grey" onload="onLoad()">
         <%@include file="../Components/SideBar.jsp" %>
@@ -35,24 +40,24 @@
                 <form action="AdminMainController" method="POST">
                     <div class="form-row">
                         <div class="col-md-6 mb-3">                
-                            FirstName <input type="text" class="form-control" name="txtFirstName" value="${param.txtFirstName}" required/>
+                            FirstName <input type="text" class="form-control" name="txtFirstName" value="${param.txtFirstName}"/>
                             <p class="invalid">${requestScope.INVALID_Regis.fName}</p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            LastName <input type="text" class="form-control" name="txtLastName" value="${param.txtLastName}" required/>
+                            LastName <input type="text" class="form-control" name="txtLastName" value="${param.txtLastName}"/>
                             <p class="invalid">${requestScope.INVALID_Regis.lName}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        Username <input type="text" class="form-control" name="txtUsername" value="${param.txtUsername}" required/>
+                        Username <input type="text" class="form-control" name="txtUsername" value="${param.txtUsername}"/>
                         <p class="invalid">${requestScope.INVALID_Regis.username}</p>
                     </div>
                     <div class="form-group">
-                        Password <input type="password" class="form-control" name="txtPassword" id="txtPassword" onchange="onChange()" required=/>
+                        Password <input type="password" class="form-control" name="txtPassword" id="txtPassword" onchange="onChange()"/>
                         <p class="invalid">${requestScope.INVALID_Regis.password}</p>
                     </div>
                     <div class="form-group">
-                        Confirm password <input type="password" class="form-control" name="txtConfirmPassword" id="txtConfirm" onchange="onChange()" required=/>
+                        Confirm password <input type="password" class="form-control" name="txtConfirmPassword" id="txtConfirm" onchange="onChange()"/>
                         <p class="invalid">${requestScope.INVALID_Regis.confirm}</p>
                     </div>
                     <div class="form-row">

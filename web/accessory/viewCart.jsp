@@ -69,10 +69,9 @@
                                     <td data-th="Subtotal" class="text-center" id="sub-total">${dtoAccess.price * dtoAccess.quantity}</td>
                                     <td class="actions" data-th="">
                                         <form action="CartMainController" method="POST">
-
+                                            <input type="hidden" name="txtAccessoryID" value="${dtoAccess.id}"/>
+                                            <button class="btn btn-danger btn-sm" type="submit" name="action" value="Delete"><i class="fa fa-trash-o"></i></button>
                                         </form>
-                                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                                        <button class="btn btn-danger btn-sm" onclick="removeItem('${dtoAccess.id}', '${theCount.count}')"><i class="fa fa-trash-o"></i></button>
                                     </td>
                                 </tr>                    
                             </c:forEach>
@@ -82,7 +81,14 @@
                                 <td class="text-center"><strong>Total 1.99</strong></td>
                             </tr>
                             <tr>
-                                <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                                <td>
+                                    <c:url value="AccessoryMainController" var="url_Accessory">
+                                        <c:param name="action" value="Load"/>
+                                        <c:param name="txtAccessorySearch" value="" />
+                                        <c:param name="page" value="1"/>
+                                    </c:url>
+                                    <a href="${url_Accessory}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                                </td>
                                 <td colspan="2" class="hidden-xs"></td>
                                 <td class="hidden-xs text-center"><strong>Total ${sessionScope.CART.total}</strong></td>
                                 <td>
@@ -135,6 +141,10 @@
                         notice.innerHTML = "You need to login to check out";
                         myModal.style.display = "block";
                     }
+                }
+
+                if (${requestScope.NOTICE != null}) {
+                    showSnackBar('${requestScope.NOTICE}');
                 }
             }
         </script>

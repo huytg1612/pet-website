@@ -38,6 +38,10 @@ public class SearchController extends HttpServlet {
             String dateSearch = request.getParameter("txtSearch");
             
             if(dateSearch == null){
+                dateSearch = "";
+            }
+            
+            if(dateSearch.isEmpty()){
                 dateSearch = GetDate.getCurrentDate().toString();
             }
             

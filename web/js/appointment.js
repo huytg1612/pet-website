@@ -73,11 +73,14 @@ function setTimePicker() {
         }
     } else {
         var opt = document.createElement('option');
-
+        var btn = document.getElementById('checkOut-btn');
+        
         opt.appendChild(document.createTextNode('Time Out'));
         opt.value = 'Time Out';
 
         timePicker.appendChild(opt);
+        btn.disabled = true;
+        
     }
 
 }

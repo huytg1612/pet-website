@@ -14,14 +14,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author SE130226
  */
 public class UpdateController extends HttpServlet {
+
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "admin/adminProfile.jsp";
+    private static final String SUCCESS = "AdminProfileController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,7 +41,6 @@ public class UpdateController extends HttpServlet {
 
         boolean check = true;
         try {
-            String username = request.getParameter("txtUsername");
             String fName = request.getParameter("txtFirstName");
             String lName = request.getParameter("txtLastName");
             String address = request.getParameter("txtAddress");
@@ -47,9 +49,13 @@ public class UpdateController extends HttpServlet {
             String about = request.getParameter("txtAbout");
             String phone = request.getParameter("txtPhone");
 
-            RegistrationDetailDTO dto = new RegistrationDetailDTO(username, fName, lName, address, sex, dob, about, phone);
             RegistrationDetailDAO dao = new RegistrationDetailDAO();
 
+            HttpSession session = request.getSession();
+            RegistrationDetailDTO sessionDTO = (RegistrationDetailDTO) session.getAttribute("USER");
+            String username = sessionDTO.getUsername();
+
+            RegistrationDetailDTO dto = new RegistrationDetailDTO(username, fName, lName, address, sex, dob, about, phone);
             RegistrationErrorObject errorObj = new RegistrationErrorObject();
 
             if (fName.isEmpty()) {
@@ -70,7 +76,7 @@ public class UpdateController extends HttpServlet {
                 } else {
                     request.setAttribute("ERROR", "Update failed");
                 }
-            }else{
+            } else {
                 request.setAttribute("INVALID", errorObj);
                 url = SUCCESS;
             }

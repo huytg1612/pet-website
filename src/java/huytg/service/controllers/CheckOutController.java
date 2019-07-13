@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author SE130226
  */
 public class CheckOutController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,28 +40,31 @@ public class CheckOutController extends HttpServlet {
             String date = request.getParameter("cboDate");
             String time = request.getParameter("cboTime");
             float total = Float.parseFloat(request.getParameter("txtTotal"));
-            
+
             HttpSession session = request.getSession();
             RegistrationDetailDTO dtoReDe = (RegistrationDetailDTO) session.getAttribute("USER");
-            
-            
-            String username = dtoReDe.getUsername();
-            ServiceScheduleDAO dao = new ServiceScheduleDAO();
-            
-            
-            ServiceScheduleDTO dto = new ServiceScheduleDTO(0, date, time, serviceID, username, petID, total, 0);
-            
-            if(!dao.checkContain(dto)){
-                if(dao.insert(dto)){
-                    request.setAttribute("NOTICE", "Make an appointment successfully");
-                }else{
-                    request.setAttribute("NOTICE", "Make an appointment failed");
+
+            if (!time.equals("Time Out")) {
+                String username = dtoReDe.getUsername();
+                ServiceScheduleDAO dao = new ServiceScheduleDAO();
+
+                ServiceScheduleDTO dto = new ServiceScheduleDTO(0, date, time, serviceID, username, petID, total, 0);
+
+                if (!dao.checkContain(dto)) {
+                    if (dao.insert(dto)) {
+                        request.setAttribute("NOTICE", "Make an appointment successfully");
+                    } else {
+                        request.setAttribute("NOTICE", "Make an appointment failed");
+                    }
+                } else {
+                    request.setAttribute("NOTICE", "Your pet have been made appointment at the same time");
                 }
             }else{
-                request.setAttribute("NOTICE", "You have been made this appointment");
+                request.setAttribute("NOTICE", "Your appoinment is not valid");
             }
+
         } catch (Exception e) {
-            log("Error at ServiceCheckOutController: "+e.getMessage());
+            log("Error at ServiceCheckOutController: " + e.getMessage());
         } finally {
             request.getRequestDispatcher("ServiceLoadController").forward(request, response);
         }

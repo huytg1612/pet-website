@@ -52,14 +52,14 @@ public class UpdateController extends HttpServlet {
             PetError petError = new PetError();
 
             if (name.isEmpty()) {
-                petError.setNameError("Name can't be blank");
+                petError.setNameError("Name can not be blank");
                 isValid = false;
             }
             if (!sex.equals("Male") && !sex.equals("Female")) {
                 petError.setSexError("Sex is not valid. Just Male or Female");
                 isValid = false;
             }
-            if (!type.equals("Dog") && type.equals("Cat") && !type.equals("Fish") && !type.equals("Hamster") && !type.equals("Bird")) {
+            if (!type.equals("Dog") && !type.equals("Cat") && !type.equals("Fish") && !type.equals("Hamster") && !type.equals("Bird")) {
                 petError.setTypeError("Type is not valid");
                 isValid = false;
             }

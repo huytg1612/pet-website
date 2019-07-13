@@ -26,7 +26,13 @@
         <link rel="stylesheet" type="text/css" href="css/user_page.css">
         <link rel="stylesheet" type="text/css" href="css/UserSideBar.css">
         <link rel="stylesheet" type="text/css" href="css/SnackBar.css">
-
+        
+        <style>
+            .error-notice{
+                color: red;
+            }
+        </style>
+        
         <title>JSP Page</title>
     </head>
     <body onload="myAlert()" id="body-style">
